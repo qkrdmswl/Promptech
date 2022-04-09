@@ -1,4 +1,4 @@
-package com.DBproject.DBproject.Domain_Id;
+package com.DBproject.DBproject.domain_id;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

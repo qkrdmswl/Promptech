@@ -1,7 +1,7 @@
-package com.DBproject.DBproject.Domain;
+package com.DBproject.DBproject.domain;
 
 
-import com.DBproject.DBproject.Domain_Id.work_em;
+import com.DBproject.DBproject.domain_id.work_em;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,21 +1,20 @@
-package com.DBproject.DBproject.Domain;
+package com.DBproject.DBproject.domain;
 
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
-
 public class Employee {
     @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private int employee_id;
+    private long employee_id;
     @Column(unique = true)
     private String employee_number;
     private String employee_name;
     private String employee_school;
+
+
     @Enumerated(EnumType.STRING)
     private Enum_Authority authority;
 
@@ -26,7 +25,7 @@ public class Employee {
     @OneToMany(mappedBy = "employee_experience")
     List<Employee_career> experience = new ArrayList<Employee_career>();*/
 
-    public int getEmployee_id() {
+    public long getEmployee_id() {
         return employee_id;
     }
 

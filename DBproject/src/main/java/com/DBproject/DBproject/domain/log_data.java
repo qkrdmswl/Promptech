@@ -1,6 +1,6 @@
-package com.DBproject.DBproject.Domain;
+package com.DBproject.DBproject.domain;
 
-import com.DBproject.DBproject.Domain_Id.skill;
+import com.DBproject.DBproject.domain_id.id;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,16 +11,15 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @EqualsAndHashCode
-@IdClass(skill.class)
-public class Employee_skill {
+@NoArgsConstructor
+@IdClass(id.class)
+public class log_data {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
-    private Employee employee;
+    private  Employee employee;
     @Id
-    private String e_skill;
-
-
+    private String log_id;
+    private String password;
 }
