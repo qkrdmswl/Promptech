@@ -1,6 +1,7 @@
 package com.DBproject.DBproject.Domain;
 
 import com.DBproject.DBproject.Domain_Id.estimation_cr;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode
 @IdClass(estimation_cr.class)
 public class Estimation_CR {
 

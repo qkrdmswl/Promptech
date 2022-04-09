@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Employee {
-    @Id //@GeneratedValue(strategy =GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
     private int employee_id;
     @Column(unique = true)
     private String employee_number;

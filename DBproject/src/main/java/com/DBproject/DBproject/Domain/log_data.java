@@ -1,6 +1,7 @@
 package com.DBproject.DBproject.Domain;
 
 import com.DBproject.DBproject.Domain_Id.id;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode
 @NoArgsConstructor
 @IdClass(id.class)
 public class log_data {

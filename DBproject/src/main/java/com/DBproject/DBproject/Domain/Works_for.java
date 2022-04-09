@@ -2,6 +2,7 @@ package com.DBproject.DBproject.Domain;
 
 
 import com.DBproject.DBproject.Domain_Id.work_em;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @IdClass(work_em.class)
-
+@EqualsAndHashCode
 public class Works_for {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
