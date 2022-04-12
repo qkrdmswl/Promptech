@@ -10,10 +10,15 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Project {
-    @Id
+    @Id @Column(length = 255)
     private String project_id;
+    @Column(length = 50,nullable = false)
     private String project_name;
+    @Column(length = 50,nullable = false)
+    private String ordering_company;
+    @Column(nullable = false)
     private LocalDate start_date;
+    @Column(nullable = false)
     private LocalDate end_date;
 
    /* @OneToMany(fetch = FetchType.LAZY)

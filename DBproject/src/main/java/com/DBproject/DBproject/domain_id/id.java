@@ -11,5 +11,5 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class id implements Serializable {
     private int employee;
-    private  String log_id;
+    //private  String log_id;
 }

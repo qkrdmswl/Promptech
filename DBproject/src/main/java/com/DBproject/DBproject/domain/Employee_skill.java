@@ -19,7 +19,7 @@ public class Employee_skill {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private Employee employee;
-    @Id
+    @Id @Column(length = 50,nullable = false)
     private String e_skill;
 
 

@@ -13,13 +13,16 @@ import javax.persistence.*;
 @Setter
 @EqualsAndHashCode
 @NoArgsConstructor
-@IdClass(id.class)
+//@IdClass(id.class)
 public class log_data {
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
     private  Employee employee;
     @Id
+    private String id;
+    @Column(length = 50,nullable = false)
     private String log_id;
+    @Column(length = 50,nullable = false)
     private String password;
 }

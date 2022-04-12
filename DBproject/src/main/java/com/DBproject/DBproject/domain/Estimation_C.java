@@ -26,10 +26,13 @@ public class Estimation_C {
     @JoinColumn(name = "employee_id",nullable = false)
     private Employee employee;
 
-
+    @Column(nullable = false,length = 10)
     private int working_score;
+    @Column(nullable = false,length = 255)
     private String working_comments;
+    @Column(nullable = false,length = 10)
     private int comunication_score;
+    @Column(nullable = false,length = 255)
     private String comunication_comments;
 
 

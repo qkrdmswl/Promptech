@@ -1,8 +1,7 @@
-package com.DBproject.DBproject.Service;
+package com.DBproject.DBproject.service;
 
-import com.DBproject.DBproject.Repository.EmployeeRepository;
 import com.DBproject.DBproject.domain.Employee;
-import com.DBproject.DBproject.Repository.EmployeeRepository;
+//import com.DBproject.DBproject.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +11,10 @@ import javax.transaction.Transactional;
 @Transactional
 public class EmployeeService {
 
-    private final EmployeeRepository employeeRepository;
-
+    private final com.DBproject.DBproject.repository.EmployeeRepository employeeRepository;
 
     @Autowired  // 생성자 주입
-    public EmployeeService(EmployeeRepository employeeRepository){
+    public EmployeeService(com.DBproject.DBproject.repository.EmployeeRepository employeeRepository){
         this.employeeRepository=employeeRepository;
     }
 

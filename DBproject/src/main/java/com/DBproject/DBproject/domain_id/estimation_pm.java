@@ -12,5 +12,6 @@ import java.io.Serializable;
 public class estimation_pm implements Serializable {
     private String project;
     private int employee;
+    private String estimator_type;
 
 }

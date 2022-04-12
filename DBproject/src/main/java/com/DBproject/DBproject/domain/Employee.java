@@ -9,14 +9,20 @@ import javax.persistence.*;
 public class Employee {
     @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
     private long employee_id;
-    @Column(unique = true)
+    @Column(unique = true ,length=25,nullable = false)
     private String employee_number;
+    @Column(length = 50,nullable = false)
     private String employee_name;
+    @Column(length = 50,nullable = false)
     private String employee_school;
 
-
+    @Column(length = 25,nullable = false)
     @Enumerated(EnumType.STRING)
-    private Enum_Authority authority;
+    private Authority authority;
+
+    /*@OneToOne
+    @JoinTable(name = "Employee_log",
+               joincolejfewkjfnweopdijpowqkdwqdqwwd)*/
 
     /*@OneToMany(mappedBy = "employee_works")
     List<Works_for> works = new ArrayList<Works_for>();
