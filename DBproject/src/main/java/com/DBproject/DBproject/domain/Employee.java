@@ -8,7 +8,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Employee {
     @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private long employee_id;
+    private int employee_id;
     @Column(unique = true ,length=25,nullable = false)
     private String employee_number;
     @Column(length = 50,nullable = false)
@@ -31,7 +31,7 @@ public class Employee {
     @OneToMany(mappedBy = "employee_experience")
     List<Employee_career> experience = new ArrayList<Employee_career>();*/
 
-    public long getEmployee_id() {
+    public int getEmployee_id() {
         return employee_id;
     }
 

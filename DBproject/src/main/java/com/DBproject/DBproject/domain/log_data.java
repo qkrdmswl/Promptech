@@ -1,6 +1,5 @@
 package com.DBproject.DBproject.domain;
 
-import com.DBproject.DBproject.domain_id.id;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

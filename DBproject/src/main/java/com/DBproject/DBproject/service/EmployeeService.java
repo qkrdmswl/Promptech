@@ -20,7 +20,7 @@ public class EmployeeService {
         this.employeeRepository=employeeRepository;
     }
 
-    public Long join(Employee employee) {
+    public int join(Employee employee) {
         employeeRepository.save(employee);
         return employee.getEmployee_id();
     }

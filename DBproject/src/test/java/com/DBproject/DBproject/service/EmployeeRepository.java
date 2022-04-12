@@ -1,8 +1,7 @@
-package com.DBproject.DBproject.Repository;
+package com.DBproject.DBproject.service;
 
 import com.DBproject.DBproject.domain.Employee;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

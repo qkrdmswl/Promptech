@@ -15,7 +15,7 @@ public class EmployeeServiceTest {
 
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    com.DBproject.DBproject.Repository.EmployeeRepository employeeRepository;
     @Autowired
     EmployeeService employeeService;
 
@@ -28,7 +28,7 @@ public class EmployeeServiceTest {
         employee.setEmployee_name("hanjisu");
         employee.setEmployee_school("mju");
         // when
-        Long savedId = employeeService.join(employee);
+        int savedId = employeeService.join(employee);
         // then
         Assertions.assertEquals(employee, employeeRepository.findOne(savedId));
     }
