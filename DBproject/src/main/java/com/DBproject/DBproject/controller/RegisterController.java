@@ -1,8 +1,8 @@
 package com.DBproject.DBproject.controller;
 
 import com.DBproject.DBproject.Service.EmployeeService;
+import com.DBproject.DBproject.domain.Authority;
 import com.DBproject.DBproject.domain.Employee;
-import com.DBproject.DBproject.domain.log_data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,16 +29,17 @@ public class RegisterController {
         if (result.hasErrors()) { // bindingResult: 에러가 나면 다시 회원가입 창으로 돌려준다.
             return "registers/register";
         }
+
         Employee em =new Employee();
         em.setEmployee_name(form.getEmployee_name());
         em.setEmployee_number(form.getEmployee_number());
         em.setEmployee_school(form.getEmployee_school());
+        em.setLog_id(form.getLog_id());
+        em.setPassword(form.getPassword());
+        em.setAuthority(Authority.valueOf(form.getAuthority()));
 
 
-        log_data lg = new log_data();
-        lg.setLog_id(form.getLog_id());
-        lg.setEmployee(em);
-        lg.setPassword(form.getPassword());
+       employeeService.join(em);
         return "redirect:/";     }
 
 }

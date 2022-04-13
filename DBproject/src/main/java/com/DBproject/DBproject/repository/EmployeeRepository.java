@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -21,5 +22,16 @@ public class EmployeeRepository {
 
 
     public Employee findOne(int id) { return em.find(Employee.class, id);
+    }
+
+    public List<Employee> findByNum(String num){
+        return em.createQuery("select e from Employee e where e.employee_number = :num",Employee.class)
+                .setParameter("num",num)
+                .getResultList();
+    }
+    public List<Employee> findBylog(String log){
+        return em.createQuery("select e from Employee e where e.log_id = :log",Employee.class)
+                .setParameter("log",log)
+                .getResultList();
     }
 }
