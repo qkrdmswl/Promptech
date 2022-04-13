@@ -22,24 +22,29 @@ public class EmployeeService {
     }
 
     public int join(Employee employee) {
-        validateionDuplicateNum(employee);
-        validateionDuplicateId(employee);
+        //validateionDuplicateNum(employee);
+        //validateionDuplicateId(employee);
         employeeRepository.save(employee);
         return employee.getEmployee_id();
     }
 
-    private void validateionDuplicateNum(Employee employee) {
+    public boolean validateionDuplicateNum(Employee employee) {
         List<Employee> findnum=employeeRepository.findByNum(employee.getEmployee_number());
+        /*if(!findnum.isEmpty()){
+            throw new IllegalStateException("이미 존재하는 회원입니다.");
+        }*/
         if(!findnum.isEmpty()){
-            throw new IllegalStateException("이미 존재하는 회원입니다");
-        }
+            return false;}
+        return true;
     }
 
-    private void validateionDuplicateId(Employee employee) {
+    public boolean validateionDuplicateId(Employee employee) {
         List<Employee> findId=employeeRepository.findBylog(employee.getLog_id());
-        if(!findId.isEmpty()){
-            throw new IllegalStateException("이미 존재하는 회원입니다");
-        }
+        //if(!findId.isEmpty()){
+            //throw new IllegalStateException("이미 존재하는 ID입니다.");
+        //}
+        if(!findId.isEmpty()){return false;}
+        return true;
     }
 
 
