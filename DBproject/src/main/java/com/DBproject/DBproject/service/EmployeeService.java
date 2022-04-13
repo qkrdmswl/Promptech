@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -21,8 +22,25 @@ public class EmployeeService {
     }
 
     public int join(Employee employee) {
+        validateionDuplicateNum(employee);
+        validateionDuplicateId(employee);
         employeeRepository.save(employee);
         return employee.getEmployee_id();
     }
+
+    private void validateionDuplicateNum(Employee employee) {
+        List<Employee> findnum=employeeRepository.findByNum(employee.getEmployee_number());
+        if(!findnum.isEmpty()){
+            throw new IllegalStateException("이미 존재하는 회원입니다");
+        }
+    }
+
+    private void validateionDuplicateId(Employee employee) {
+        List<Employee> findId=employeeRepository.findBylog(employee.getLog_id());
+        if(!findId.isEmpty()){
+            throw new IllegalStateException("이미 존재하는 회원입니다");
+        }
+    }
+
 
 }
