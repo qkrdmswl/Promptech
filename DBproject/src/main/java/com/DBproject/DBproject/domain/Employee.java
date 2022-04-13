@@ -22,7 +22,6 @@ public class Employee {
     @Column(length = 25,nullable = false)
     @Enumerated(EnumType.STRING)
     private Authority authority;
-
     @Column(length = 50,nullable = false)
     private String log_id;
     @Column(length = 50,nullable = false)
