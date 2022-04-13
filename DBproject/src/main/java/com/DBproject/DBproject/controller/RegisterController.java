@@ -26,6 +26,7 @@ public class RegisterController {
     }
     @PostMapping(value = "/registers/new") // valid: memberform에 @Notempty를 인식.
     public String create(@Valid RegisterForm form, BindingResult result) {
+
         if (result.hasErrors()) { // bindingResult: 에러가 나면 다시 회원가입 창으로 돌려준다.
             return "registers/register";
         }
@@ -37,6 +38,15 @@ public class RegisterController {
         em.setLog_id(form.getLog_id());
         em.setPassword(form.getPassword());
         em.setAuthority(Authority.valueOf(form.getAuthority()));
+
+
+
+        if(employeeService.validateionDuplicateId(em)==false){
+            return "registers/register";
+        }
+        if(employeeService.validateionDuplicateNum(em)==false){
+            return "registers/register";
+        }
 
 
        employeeService.join(em);

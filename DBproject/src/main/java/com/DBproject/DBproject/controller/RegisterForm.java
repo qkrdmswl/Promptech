@@ -3,6 +3,8 @@ package com.DBproject.DBproject.controller;
 import com.DBproject.DBproject.domain.Authority;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
@@ -23,6 +25,8 @@ public class RegisterForm {
 
     @NotEmpty(message = "권한입력은 필수입니다")
     private String authority;
+
+
 
 
 
