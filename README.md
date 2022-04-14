@@ -6,3 +6,6 @@
 
 #### V2. ERD 
 ![KakaoTalk_Photo_2022-04-11-18-23-00](https://user-images.githubusercontent.com/66197538/162885462-a5562e44-cc16-4653-a4b0-6983c0b1fce8.jpeg)
+
+#### V3. ERD 
+![스크린샷 2022-04-14 오후 7 00 15](https://user-images.githubusercontent.com/66197538/163362436-5052ce79-5653-4d7f-a248-fa1882563687.png)
