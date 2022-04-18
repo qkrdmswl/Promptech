@@ -11,6 +11,6 @@
 ![스크린샷 2022-04-14 오후 7 00 15](https://user-images.githubusercontent.com/66197538/163362436-5052ce79-5653-4d7f-a248-fa1882563687.png)
 
 
-##### V3. 요구사항 정의 2022.04.18 -
+##### V3. DB설계서 2022.04.18 -
 
 <img width="857" alt="스크린샷 2022-04-18 오전 2 27 37" src="https://user-images.githubusercontent.com/66197538/163750576-9e2ca1ff-78f0-43a2-ad82-2cda4c6996eb.png">
