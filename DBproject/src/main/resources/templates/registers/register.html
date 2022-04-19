@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 
 <head th:replace="fragments/header :: header">
 
@@ -11,8 +11,9 @@
   </style>
 <body>
 <div class="container">
+
   <div th:replace="fragments/bodyHeader :: bodyHeader"/>
-  <form role="form" action="/registers/new" th:object="${registerForm}" method="post">
+  <form role="form" action="/registers/new" th:object="${registerForm}" method="post" >
 
     <div class="form-group">
       <label th:for="employee_name">이름</label>
@@ -48,16 +49,23 @@
       <label th:for="authority">직원권한</label>
       <input type="text" th:field="*{authority}" class="form-control" placeholder="ADMIN or BASIC or CEO" th:class="${#fields.hasErrors('authority')}? 'form-control fieldError' : 'form-control'">
       <p th:if="${#fields.hasErrors('authority')}"th:errors="*{authority}">Incorrect date</p>
-    </div>
+    </div></br></br>
+    <button type="submit"  class="btn btn-primary">Submit</button>
 
-
-
-
-
-    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
+
+
+    <div class="row mb-3">
+      <div class="col-8">
+
+          <div th:if="${error}" class="mb-3 alert alert-danger">
+            <strong>해당 아이디가 존재합니다. </stong>
+          </div>
+</br>
   <br/>
   <div th:replace="fragments/footer :: footer" />
-</div> <!-- /container -->
+      </div> <!-- /container -->
+    </div>
+</div>
 </body>
 </html>

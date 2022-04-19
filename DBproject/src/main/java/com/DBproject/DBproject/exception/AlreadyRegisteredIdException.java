@@ -1,7 +1,9 @@
 package com.DBproject.DBproject.exception;
 
-public class AlreadyRegisteredIdException extends Exception{
-        public AlreadyRegisteredIdException() {
-            super("중복된 로그인 ID입니다. 다른 아이디를 등록하세요 ");
+public class AlreadyRegisteredIdException extends CustomException{
+    private static final long serialVersionUID = -7799696001358188839L;
+    public AlreadyRegisteredIdException(String message) {
+
+            super(message);
         }
 }

@@ -2,7 +2,7 @@ package com.DBproject.DBproject.Service;
 
 import com.DBproject.DBproject.Repository.EmployeeRepository;
 import com.DBproject.DBproject.domain.Employee;
-import com.DBproject.DBproject.Repository.EmployeeRepository;
+import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class EmployeeService {
 
     public int join(Employee employee) {
         //validateionDuplicateNum(employee);
-        //validateionDuplicateId(employee);
+        validateionDuplicateId(employee);
         employeeRepository.save(employee);
         return employee.getEmployee_id();
     }
@@ -41,13 +41,13 @@ public class EmployeeService {
 
     public boolean validateionDuplicateId(Employee employee) {
         List<Employee> findId = employeeRepository.findBylog(employee.getLog_id());
-        /*if (!findId.isEmpty()) {
-            throw new IllegalStateException("이미 존재하는 ID입니다.");
-        }*/
-        if(!findId.isEmpty()){return false;}
+        if (!findId.isEmpty()) {
+            throw new AlreadyRegisteredIdException("이미 존재하는 아이디입니다.");
+        }
+        //if(!findId.isEmpty()){return false;}
+        //return true;
+        //}
+
         return true;
     }
-
-
-
 }
