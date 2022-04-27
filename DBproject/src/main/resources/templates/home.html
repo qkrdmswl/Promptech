@@ -15,17 +15,19 @@
         <h1>PROMPT_TEC</h1>
         <br/>
         <br/>
-        <form role="form" action="/log"  method="post">
+        <form role="form" action="/log/new" th:object="${loginform}" method="post">
             <div class="form-group">
 
-                <input type="text"  class="form-text" placeholder="아이디" >
+                <input type="text" th:field="*{log_id}" class="form-control" placeholder="아이디" th:class="${#fields.hasErrors('log_id')}? 'form-control fieldError' : 'form-control'">
+                <p th:if="${#fields.hasErrors('log_id')}"th:errors="*{log_id}">Incorrect date</p>
 
 
             </div><br/>
 
 
             <div class="form-group">
-                <input type="password"  class="form-text" placeholder="비밀번호" >
+                <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호" th:class="${#fields.hasErrors('password')}? 'form-control fieldError' : 'form-control'" >
+                <p th:if="${#fields.hasErrors('password')}"th:errors="*{password}">Incorrect date</p>
             </div><br/><br/><br/>
 
                 <!--<div class="form-group">
@@ -35,7 +37,7 @@
                 </div>-->
 
 
-            <button type="submit" class="btn btn-lg btn-secondary">로그인</button>
+            <button type="submit" class="btn btn-lg btn-secondary" >로그인</button>
             <!--<a class="btn btn-lg btn-secondary" href="/register/new">회원 가입</a>-->
 
         </form>
