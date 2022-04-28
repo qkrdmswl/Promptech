@@ -26,8 +26,6 @@ public class RegisterController {
     @GetMapping("/registers/new")
     public String createForm(Model model){
         model.addAttribute("registerForm",new RegisterForm());
-
-
         return "registers/register";
     }
     @ExceptionHandler(AlreadyRegisteredIdException.class)

@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class LoginController {
     private final LoginService loginService;
 
-    @PostMapping(value = "/log/new")
+    @PostMapping( "/log/new")
     public String create(@Valid LoginForm loginform, BindingResult result)
     {
         if (result.hasErrors()) { // bindingResult: 에러가 나면 다시 로그인 창으로 돌려준다.
