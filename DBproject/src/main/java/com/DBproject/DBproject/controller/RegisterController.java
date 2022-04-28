@@ -53,7 +53,9 @@ public class RegisterController {
           //  return "registers/register";
         //}
        employeeService.join(em);
-        return "redirect:/"; }catch (AlreadyRegisteredIdException v){
+        return "redirect:/";  // 여기 추가로 코드가 들어가면 좋을듯
+
+        }catch (AlreadyRegisteredIdException v){
             model.addAttribute("error", new AlreadyRegisteredIdException(v.getMessage()));
             return "registers/register";
 
