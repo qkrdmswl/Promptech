@@ -1,6 +1,7 @@
 package com.DBproject.DBproject.controller;
 
 import com.DBproject.DBproject.Service.EmployeeService;
+import com.DBproject.DBproject.controller.dto.RegisterForm;
 import com.DBproject.DBproject.domain.Authority;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
@@ -8,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

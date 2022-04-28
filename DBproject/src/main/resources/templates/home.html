@@ -15,7 +15,7 @@
         <h1>PROMPT_TEC</h1>
         <br/>
         <br/>
-        <form role="form" action="/log/new" th:object="${longform}" method="post">
+        <form role="form" action="/log/new" th:object="${loginForm}" method="post">
             <div class="form-group">
 
                 <input type="text" th:field="*{log_id}" class="form-control" placeholder="아이디" th:class="${#fields.hasErrors('log_id')}? 'form-control fieldError' : 'form-control'">

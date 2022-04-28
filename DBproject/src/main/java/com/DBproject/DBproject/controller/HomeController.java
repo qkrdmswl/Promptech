@@ -1,5 +1,6 @@
 package com.DBproject.DBproject.controller;
 
+import com.DBproject.DBproject.controller.dto.LoginForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,7 @@ public class HomeController {
 
     @GetMapping ("/")
     public String Home(Model model){
-        model.addAttribute("longform",new LoginForm());
+        model.addAttribute("loginForm",new LoginForm());
         log.info("home controller");
         return "home";
     }

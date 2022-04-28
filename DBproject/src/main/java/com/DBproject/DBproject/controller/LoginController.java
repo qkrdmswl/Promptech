@@ -1,6 +1,7 @@
 package com.DBproject.DBproject.controller;
 
 import com.DBproject.DBproject.Service.LoginService;
+import com.DBproject.DBproject.controller.dto.LoginForm;
 import com.DBproject.DBproject.exception.NoIdException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -38,17 +39,17 @@ public class LoginController {
     }
 
 
-    // 로그인 후 뷰를 내려주고 api 명세를 위한 매핑
+    // 사원 전용 마이페이지
     @GetMapping("/log/employee")
     public String goEmployeePage(){
         return "/log/employee";
     }
-    // 로그인 후 뷰를 내려주고 api 명세를 위한 매핑
+    // admin 전용 마이페이지
     @GetMapping("/log/admin")
     public String goAdminPage(){
         return "/log/admin";
     }
-    // 로그인 후 뷰를 내려주고 api 명세를 위한 매핑
+    // ceo 전용 마이페이지
     @GetMapping("/log/ceo")
     public String goCEOPage(){
         return "/log/ceo";
