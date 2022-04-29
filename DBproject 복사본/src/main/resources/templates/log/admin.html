@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+
+<head th:replace="fragments/header :: header">
+
+    <style>
+        .fieldError {
+            border-color: #bd2130;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div th:replace="fragments/bodyHeader :: bodyHeader" />
+         <h1>관리자</h1>
+        </div>
+    <div th:replace="fragments/footer :: footer" />
+    </br>
+    <div class="row">
+        <div class="col">
+            <form th:action="@{/logout}" method="post">
+                <button class="w-100 btn btn-dark btn-lg"  type="submit">
+                    로그아웃
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
