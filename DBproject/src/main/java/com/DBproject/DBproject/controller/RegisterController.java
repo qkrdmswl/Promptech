@@ -43,7 +43,8 @@ public class RegisterController {
         em.setEmployee_school(form.getEmployee_school());
         em.setLog_id(form.getLog_id());
         em.setPassword(form.getPassword());
-        em.setAuthority(Authority.valueOf(form.getAuthority()));
+        em.setAuthority(Authority.BASIC);
+        //em.setAuthority(Authority.valueOf(form.getAuthority()));
         //if(employeeService.validateionDuplicateId(em)==false){
           //  return "registers/register";
         //}

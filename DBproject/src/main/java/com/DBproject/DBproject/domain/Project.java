@@ -16,9 +16,9 @@ public class Project {
     private String project_name;
     @Column(length = 50,nullable = false)
     private String ordering_company;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private LocalDate start_date;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private LocalDate end_date;
 
    /* @OneToMany(fetch = FetchType.LAZY)

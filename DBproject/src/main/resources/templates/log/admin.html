@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns="http://www.w3.org/1999/html">
 
 <head th:replace="fragments/header :: header">
 
@@ -14,7 +15,24 @@
     <div class="container">
         <div th:replace="fragments/bodyHeader :: bodyHeader" />
          <h1>관리자</h1>
+         <h2 class="mb-3" th:text="|로그인 사용자 이름: ${employee.employee_name}|">로그인 사용자 이름 </h2>
+        </br>
+        <tr th:each="works_for : ${works_for}">
+            <td th:text="${works_for.project.project_name}"></td>
+        </tr>
+
         </div>
     <div th:replace="fragments/footer :: footer" />
+    </br>
+
+    <div class="row">
+        <div class="col">
+            <form th:action="@{/logout}" method="post">
+                <button class="w-100 btn btn-dark btn-lg"  type="submit">
+                    로그아웃
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

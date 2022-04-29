@@ -43,26 +43,15 @@ public class LoginService {
         return "";
     }
 
-    /*public String login(Employee employee){
+    public List<Employee> findOne(String id,String password){
         //loginRepository.findById(employee);
-        List<Employee> findId = loginRepository.findById(employee.getLog_id());
-        if(findId.get(0).getAuthority() == Authority.BASIC){
-            return "BASIC";
+        List<Employee> findId = loginRepository.findById_password(id,password);
 
-        }
-        else if(findId.get(0).getAuthority() == Authority.ADMIN){
-                return "ADMIN";
-
-        }
-        else if(findId.get(0).getAuthority() == Authority.CEO){
-            return "CEO";
+        if(findId.isEmpty()){
+            return null;
         }
 
-        else if(!findId.isEmpty()){
-            throw new AlreadyRegisteredIdException("아이디가 존재하지 않습니다.");
-        }
-
-        return "";
-    }*/
+        return findId;
+    }
 
 }
