@@ -21,6 +21,9 @@ public class Project {
     //@Column(nullable = false)
     private LocalDate end_date;
 
+    @Column(nullable = false)
+    private int project_cost;
+
    /* @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "projects")
     List<Works_for> work =new ArrayList<Works_for>();*/

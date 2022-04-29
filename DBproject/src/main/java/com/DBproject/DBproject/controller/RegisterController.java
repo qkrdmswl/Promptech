@@ -17,11 +17,10 @@ import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-
 public class RegisterController {
 
-    private final EmployeeService employeeService;
 
+    private final EmployeeService employeeService;
 
     @GetMapping("/registers/new")
     public String createForm(Model model){
