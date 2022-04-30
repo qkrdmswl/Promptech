@@ -11,14 +11,35 @@
     </style>
 <body>
         <h1>직원</h1>
-        <h2 class="mb-3" th:text="|로그인 사용자 이름: ${employee.employee_name}|">로그인 사용자 이름 </h2>
+        <h2 class="mb-3" th:text="|환영합니다  ${employee.employee_name}님|">로그인 사용자 이름 </h2>
         </br>
+
+        <table class="table table-striped">
+        <thead>
+        <tr>
+
+            <th>참여한 프로젝트 이름</th>
+
+            <th>직무</th>
+
+            <th>참여날짜</th>
+
+            <th>종료날짜</th>
+
+            <th>진행상태</th>
+
+        </tr>
+        </thead>
+        <tbody>
         <tr th:each="worksFor : ${worksFor}">
             <td th:text="${worksFor.project.project_name}"></td>
             <td th:text="${worksFor.e_job}"></td>
             <td th:text="${worksFor.e_start_d}"></td>
             <td th:text="${worksFor.e_end_d}"></td>
+            <td th:if="${worksFor.e_end_d}"></td>
         </tr>
+        </tbody>
+        </table>
         </br>
         <div class="row">
             <div class="col">
