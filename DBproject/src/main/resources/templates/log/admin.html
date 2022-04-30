@@ -17,9 +17,7 @@
          <h1>관리자</h1>
          <h2 class="mb-3" th:text="|로그인 사용자 이름: ${employee.employee_name}|">로그인 사용자 이름 </h2>
         </br>
-        <tr th:each="works_for : ${works_for}">
-            <td th:text="${works_for.project.project_name}"></td>
-        </tr>
+
 
         </div>
     <div th:replace="fragments/footer :: footer" />
