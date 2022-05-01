@@ -26,6 +26,10 @@ public class Employee {
     private String log_id;
     @Column(length = 50,nullable = false)
     private String password;
+    @Column(length = 50 ,nullable = false)
+    private String phoneNum;
+    @Column(length = 50 , nullable =false)
+    private String email;
 
     /*@OneToOne
     @JoinTable(name = "Employee_log",
