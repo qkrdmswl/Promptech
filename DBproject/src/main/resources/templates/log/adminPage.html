@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 마이페이지</title>
+    <style>
+        * { font-family : Arial}
+        table { border-collapse: collapse; }
+        tbody tr:nth-child(odd) { background : #e6f1ff; }
+        tbody tr:nth-child(even) { background : aliceblue; }
+        thead tr {background : beige;}
+        tr { border-top: 1px solid black; border-bottom: 1px solid black; }
+        td { padding: 5px; }
+        body {
+              background-color: #ccc;
+              padding: 10px;
+            }
+        button {
+          align-items: center;
+          appearance: button;
+          background-color: #0276FF;
+          border-radius: 8px;
+          border-style: none;
+          box-shadow: rgba(255, 255, 255, 0.25) 0 1px 2px inset;
+          box-sizing: border-box;
+          color: #fff;
+          cursor: pointer;
+          display: flex;
+          flex-direction: row;
+          flex-shrink: 0;
+          font-family: "Arial",sans-serif;
+          font-size: 100%;
+          line-height: 1.15;
+          margin: 25px;
+          padding: 10px 21px;
+          text-align: center;}
+        h2 {padding: 10px; border:5px double #848484; border-radius:10px;}
+        #table1 {position: relative; left : 180px;}
+        #table2 {position: relative; right : -220px;}
+    </style>
+</head>
+<body>
+    <h2>안녕하세요! xxx님!</h2><br>
+    <div style="display:inline-block; height:150px; overflow : scroll;" id="table1" >
+        <table border="1">
+            <caption>프로젝트 목록</caption>
+            <thead>
+                <tr><th>프로젝트 아이디</th><th>프로젝트 이름</th><th>고객사</th><th>프로젝트 시작 기간</th><th>프로젝트 종료 기간</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+            </tbody>
+        </table><br>
+    </div>
+    <div style="display:inline-block; height:150px; overflow : scroll;" id="table2">
+        <table border="1">
+            <caption>Works_for 목록</caption>
+            <thead>
+                <tr><th>직원 아이디</th><th>프로젝트 아이디</th><th>직책</th><th>프로젝트 참여 날짜</th><th>프로젝트 이탈 날짜</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+            </tbody>
+        </table><br>
+    </div>
+    <div style="text-align: center;">
+        <form  style="display:inline-block;" th:action="@{/employee/edit}" action = method="get">
+            <button type="submit">개인 정보 수정하기</button>
+        </form><br>
+
+        <form  style="display:inline-block;" method="get">
+            <button type="submit">프로젝트 수정하기</button>
+        </form><br>
+
+        <form  style="display:inline-block;" action = "/관리자_마이페이지/Works_for 등록하기" method="get">
+            <button type="submit">Works_for 등록하기</button>
+        </form><br>
+
+        <form  style="display:inline-block;" action = "/관리자_마이페이지/Works_for 수정하기" method="get">
+            <button type="submit">Works_for 수정하기</button>
+        </form><br>
+    </div>
+
+
+</body>
+</html>

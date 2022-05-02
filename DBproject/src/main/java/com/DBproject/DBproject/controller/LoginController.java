@@ -42,9 +42,6 @@ public class LoginController {
         Employee loginMember = loginService.findOne(loginform.getLog_id(),loginform.getPassword()).get(0);
 
 
-
-
-
         if(loginService.login(loginform.getLog_id(),loginform.getPassword())=="BASIC"){
             HttpSession session = request.getSession();
             session.setAttribute(SessionConstants.LoginMember, loginMember);
@@ -64,9 +61,7 @@ public class LoginController {
 
             return "redirect:/log/admin";
         }
-        //else{
-          //  throw new NoIdException("아이디 또는 비밀번호가 틀렸습니다.");
-        //}
+
         }catch (NullPointerException e){
             model.addAttribute("error", new NullPointerException("아이디 또는 비밀번호가 틀렸습니다."));
             return "home";
@@ -86,29 +81,5 @@ public class LoginController {
 
         return "redirect:/";
     }
-
-
-
-    // 사원 전용 마이페이지
-    /*@GetMapping("/log/employee")
-    public String goEmployeePage(){
-        return "/log/employee";
-    }
-
-    // admin 전용 마이페이지
-    @GetMapping("/log/admin")
-    public String goAdminPage(@SessionAttribute(name = SessionConstants.LoginMember, required = false) Employee loginMember, Model model){
-        model.addAttribute("employee", loginMember);
-        List<Works_for> works_fors= employeeService.works_fors(loginMember.getLog_id());
-        model.addAttribute("works_for", works_fors);
-        return "/log/admin";
-    }
-    // ceo 전용 마이페이지
-    @GetMapping("/log/ceo")
-    public String goCEOPage(){
-        return "/log/ceo";
-    }*/
-
-
 
 }

@@ -22,7 +22,8 @@ public class EmployeeRepository {
     }
 
 
-    public Employee findOne(int id) { return em.find(Employee.class, id);
+    public Employee findOne(int id) {
+        return em.find(Employee.class, id);
     }
 
     public List<Employee> findByNum(String num){

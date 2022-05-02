@@ -46,6 +46,19 @@
         </br>
         <div class="row">
             <div class="col">
+                <form th:action="@{/edit/employee}" method="post">
+                    <button class="w-100 btn btn-dark btn-lg"  type="submit">
+                        수정하기
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col">
                 <form th:action="@{/logout}" method="post">
                     <button class="w-100 btn btn-dark btn-lg"  type="submit">
                         로그아웃

@@ -17,6 +17,7 @@ import java.time.LocalDate;
 @IdClass(work_em.class)
 @EqualsAndHashCode
 public class Works_for {
+
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id" )

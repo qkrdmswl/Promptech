@@ -12,12 +12,10 @@ import javax.validation.constraints.NotEmpty;
 public class RegisterForm {
     @NotEmpty(message = "이름 입력은 필수입니다.")
     private String employee_name;
-
     @NotEmpty(message = "주민등록 번호 입력은 필수입니다.")
     private String employee_number;
     @NotEmpty(message = "최종학력 입력은 필수입니다.")
     private String employee_school;
-
     @NotEmpty(message = "아이디 입력은 필수입니다.")
     private String log_id;
     @NotEmpty(message = "비밀번호 입력은 필수입니다.")
