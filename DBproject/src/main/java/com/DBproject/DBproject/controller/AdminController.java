@@ -20,6 +20,7 @@ public class AdminController {
     @GetMapping("/log/admin")
     public String goAdminPage(@SessionAttribute(name = SessionConstants.LoginMember, required = false) Employee loginMember, Model model){
         model.addAttribute("employee", loginMember);
+
         return "/log/admin";
     }
 }

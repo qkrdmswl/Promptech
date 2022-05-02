@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -23,6 +24,8 @@ public class EmployeeController {
         model.addAttribute("employee", loginMember);
         List<Works_for> works_fors= employeeService.works_fors(loginMember.getLog_id());
         model.addAttribute("worksFor", works_fors);
+        LocalDate nowDate = LocalDate.now();
+        model.addAttribute("nowdate",nowDate);
         return "/log/employee";
     }
 }
