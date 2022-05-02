@@ -43,7 +43,7 @@ public class EmployeeController {
 
     // 주입 메서드
     private EditForm getEditForm(Employee loginEmployee) {
-        Employee employee = employeeService.findEmployee(loginEmployee.getEmployee_id());
+        loginEmployee = employeeService.findEmployee(loginEmployee.getEmployee_id());
         EditForm editForm = new EditForm();
         editForm.setEmployee_name(loginEmployee.getEmployee_name());
         editForm.setPassword(loginEmployee.getPassword());
