@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>요구사항 9번 프로젝트 등록 및 수정</title>
@@ -48,11 +48,11 @@
     <h2>
         프로젝트 검색하기
     </h2><br>
-    <form action="/project/projectEdit" method="post" th:object="${projectForm}">
+    <form action="/project/projectEdit" method="get" th:object="${projectForm}">
         <div class = "form-group">
         <label>프로젝트 찾기</label>
         <input type="text" th:field="*{project_id}" class="form-control" placeholder="프로젝트 아이디를 입력하세요"th:class="${#fields.hasErrors('project_id')}? 'form-control fieldError' : 'form-control'">
-        <p th:if="${#fields.hasErrors('project_id)}"th:errors="*{project_id}">Incorrect date</p>
+        <p th:if="${#fields.hasErrors('project_id')}" th:errors="*{project_id}">Incorrect date</p>
         </div></br>
         <button type="submit">프로젝트 검색</button>
     </form><br>
@@ -63,7 +63,14 @@
         <tr><th>프로젝트 아이디</th><th>프로젝트 이름</th><th>고객사</th><th>예산</th><th>프로젝트 시작 기간</th><th>프로젝트 종료 기간</th><th></th></tr>
         </thead>
         <tbody>
-        <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>15억</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+        <tr th:each="form : ${project}">
+            <td th:text="${form.project_id}">-</td>
+            <td th:text="${form.project_name}">-</td>
+            <td th:text="${form.ordering_company}">-</td>
+            <td th:text="${form.project_cost}">15억</td>
+            <td th:text="${form.start_date}">2021-09-01</td>
+            <td th:text="${form.end_date}">2021-12-25</td>
+        </tr>
         </tbody>
     </table><br>
 
@@ -71,10 +78,14 @@
         프로젝트 수정하기
     </h2><br>
     <form action="/관리자_마이페이지/프로젝트 수정하기2" method="post" >
+
         <div class = "form-group">
             <label>프로젝트 아이디</label>
-            <input type="text" placeholder="p1">
+            <input type="text"  placeholder="p1">
         </div><br>
+
+
+
 
         <div class = "form-group">
             <label>프로젝트 이름</label>

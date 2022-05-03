@@ -36,7 +36,7 @@ public class EmployeeController {
         return "/log/employee";
     }
 
-    @GetMapping("/edit/employee")
+    @GetMapping("edit/employee")
     public String goEditForm(@SessionAttribute(name = SessionConstants.LoginMember, required = false) Employee loginEmployee, Model model) {
         //정보가져오기
         EditForm editForm = getEditForm(loginEmployee);  // editForm에 loginEmployee 를 주입

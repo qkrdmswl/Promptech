@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform"
-      xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/header :: header">
 
@@ -22,6 +21,17 @@
         </div>
     <div th:replace="fragments/footer :: footer" />
     </br>
+
+
+    <div class="row">
+        <div class="col">
+            <form th:action="@{/employee/edit}" method="post">
+                <button class="w-100 btn btn-dark btn-lg"  type="submit">
+                    마이페이지 수정하기
+                </button>
+            </form>
+        </div>
+
 
     <div class="row">
         <div class="col">
