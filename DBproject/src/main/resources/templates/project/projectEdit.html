@@ -48,10 +48,13 @@
     <h2>
         프로젝트 검색하기
     </h2><br>
-    <form action="/관리자_마이페이지/프로젝트 수정하기1" method="post" >
+    <form action="/project/projectEdit" method="post" th:object="${projectForm}">
+        <div class = "form-group">
         <label>프로젝트 찾기</label>
-        <input type="text" placeholder="프로젝트 아이디를 입력하세요">
-        <button type="submit">프로젝트 검색</button><br>
+        <input type="text" th:field="*{project_id}" class="form-control" placeholder="프로젝트 아이디를 입력하세요"th:class="${#fields.hasErrors('project_id')}? 'form-control fieldError' : 'form-control'">
+        <p th:if="${#fields.hasErrors('project_id)}"th:errors="*{project_id}">Incorrect date</p>
+        </div></br>
+        <button type="submit">프로젝트 검색</button>
     </form><br>
 
     <table border="2">
@@ -60,7 +63,7 @@
         <tr><th>프로젝트 아이디</th><th>프로젝트 이름</th><th>고객사</th><th>예산</th><th>프로젝트 시작 기간</th><th>프로젝트 종료 기간</th><th></th></tr>
         </thead>
         <tbody>
-        <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>15억</td><td>2021-09-01</td><td>2021-12-25</td><td><button type="submit">수정하기</button><br></td></tr>
+        <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>15억</td><td>2021-09-01</td><td>2021-12-25</td></tr>
         </tbody>
     </table><br>
 

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -30,6 +31,8 @@ public class EmployeeController {
         model.addAttribute("employee", loginMember);
         List<Works_for> works_fors = employeeService.works_fors(loginMember.getLog_id());
         model.addAttribute("worksFor", works_fors);
+        LocalDate nowdate = LocalDate.now();
+        model.addAttribute("nowdate",nowdate);
         return "/log/employee";
     }
 
@@ -43,7 +46,7 @@ public class EmployeeController {
 
     // 주입 메서드
     private EditForm getEditForm(Employee loginEmployee) {
-        loginEmployee = employeeService.findEmployee(loginEmployee.getEmployee_id());
+        Employee employee = employeeService.findEmployee(loginEmployee.getEmployee_id());
         EditForm editForm = new EditForm();
         editForm.setEmployee_name(loginEmployee.getEmployee_name());
         editForm.setPassword(loginEmployee.getPassword());

@@ -22,7 +22,7 @@ public class Project {
     private LocalDate end_date;
 
     //@Column(nullable = false)
-    private int project_cost;
+    private Long project_cost;
 
    /* @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "projects")

@@ -48,39 +48,54 @@
     <h2>
         새로운 프로젝트 등록하기
     </h2><br>
-    <form action="/관리자_마이페이지/프로젝트 등록하기" method="post" >
+    <form action="/project/projectRegister" th:object="${projectForm}" method="post" >
+
         <div class = "form-group">
             <label>프로젝트 아이디</label>
-            <input type="text" placeholder="프로젝트 아이디를 입력하세요">
+            <input type="text" th:field="*{project_id}" class="form-control" placeholder="프로젝트 아이디를 입력하세요" th:class="${#fields.hasErrors('project_id')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('project_id')}"th:errors="*{project_id}">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 이름</label>
-            <input type="text" placeholder="프로젝트 이름을 입력하세요">
+            <input type="text" th:field="*{project_name}" class="form-control" placeholder="프로젝트 이름을 입력하세요" th:class="${#fields.hasErrors('project_name')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('project_name')}"th:errors="*{project_name}">Incorrect date</p>
         </div><br>
 
 
         <div class = "form-group">
             <label>고객사</label>
-            <input type="text" placeholder="고객사를 입력하세요">
+            <input type="text" th:field="*{ordering_company}" class="form-control" placeholder="고객사를 입력하세요" th:class="${#fields.hasErrors('ordering_company')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('ordering_company')}"th:errors="*{ordering_company}">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>예산</label>
-            <input type="text" placeholder="프로젝트 예산을 입력하세요">
+            <input type="text" th:field="*{cost}" class="form-control" placeholder="프로젝트 예산을 입력하세요" th:class="${#fields.hasErrors('cost')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('cost')}"th:errors="*{cost}">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 시작 일자</label>
-            <input type="text" placeholder="(yyyy-MM-dd) 프로젝트 시작 날짜를 입력하세요">
+            <input type="text" th:field="*{start_date}" class="form-control" placeholder="(yyyy-MM-dd) 프로젝트 시작 날짜를 입력하세요" th:class="${#fields.hasErrors('start_date')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('start_date')}"th:errors="*{start_date}">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 종료 일자</label>
-            <input type="text" placeholder="(yyyy-MM-dd) 프로젝트 종료 날짜를 입력하세요">
+            <input type="text" th:field="*{end_date}" class="form-control" placeholder="(yyyy-MM-dd) 프로젝트 종료 날짜를 입력하세요" th:class="${#fields.hasErrors('end_date')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('end_date')}"th:errors="*{end_date}">Incorrect date</p>
         </div><br>
 
         <button type="submit">프로젝트 등록</button><br>
     </form><br>
+    <div class="row mb-3">
+        <div class="col-8">
+
+            <div th:if="${error}" class="mb-3 alert alert-danger">
+                <stong>해당 아이디가 존재합니다. </stong>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

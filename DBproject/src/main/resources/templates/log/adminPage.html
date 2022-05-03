@@ -40,22 +40,36 @@
     </style>
 </head>
 <body>
-    <h2>안녕하세요! xxx님!</h2><br>
+    <h2 th:text="|환영합니다 ${admin.employee_name}님|">로그인 사용자 이름</h2><br>
     <div style="display:inline-block; height:150px; overflow : scroll;" id="table1" >
         <table border="1">
             <caption>프로젝트 목록</caption>
             <thead>
-                <tr><th>프로젝트 아이디</th><th>프로젝트 이름</th><th>고객사</th><th>프로젝트 시작 기간</th><th>프로젝트 종료 기간</th></tr>
+                <tr>
+                    <th>프로젝트 아이디</th>
+                    <th>프로젝트 이름</th>
+                    <th>고객사</th>
+                    <th>프로젝트 시작 기간</th>
+                    <th>프로젝트 종료 기간</th>
+                    <th>예산</th>
+                </tr>
             </thead>
             <tbody>
+                <tr th:each="project : ${project}">
+                    <td th:text="${project.project_id}">프로젝트아이디</td>
+                    <td th:text="${project.project_name}" >프로젝트이름</td>
+                    <td th:text="${project.ordering_company}">고객사</td>
+                    <td th:text="${project.start_date}">프로젝트시작기간</td>
+                    <td th:text="${project.end_date}">프로젝트종료기간</td>
+                    <td th:text="${project.project_cost}">프로젝트종료기간</td>
+                </tr>
+                <!--<tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
                 <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
                 <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
                 <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
                 <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
                 <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
             </tbody>
         </table><br>
     </div>
@@ -83,8 +97,13 @@
             <button type="submit">개인 정보 수정하기</button>
         </form><br>
 
-        <form  style="display:inline-block;" method="get">
+
+        <form  style="display:inline-block;" th:action="@{/project/edit}" method="get">
             <button type="submit">프로젝트 수정하기</button>
+        </form><br>
+
+        <form  style="display:inline-block;" th:action="@{/project/new}" method="get">
+            <button type="submit">프로젝트 등록하기</button>
         </form><br>
 
         <form  style="display:inline-block;" action = "/관리자_마이페이지/Works_for 등록하기" method="get">
@@ -94,7 +113,13 @@
         <form  style="display:inline-block;" action = "/관리자_마이페이지/Works_for 수정하기" method="get">
             <button type="submit">Works_for 수정하기</button>
         </form><br>
+
     </div>
+    <form th:action="@{/logout}" method="post">
+        <button class="w-100 btn btn-dark btn-lg"  type="submit">
+            로그아웃
+        </button>
+    </form>
 
 
 </body>

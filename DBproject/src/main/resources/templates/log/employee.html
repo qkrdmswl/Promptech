@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 
-<head th:replace="fragments/header :: header">
+
 
     <style>
         .fieldError {
             border-color: #bd2130;
         }
+       form{
+           display: inline;
+       }
 
     </style>
 <body>
@@ -48,7 +51,7 @@
             <div class="col">
                 <form th:action="@{/edit/employee}" method="get">
                     <button class="w-100 btn btn-dark btn-lg"  type="submit">
-                        수정하기
+                        정보 수정하기
                     </button>
                 </form>
             </div>

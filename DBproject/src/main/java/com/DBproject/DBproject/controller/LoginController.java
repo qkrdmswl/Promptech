@@ -59,7 +59,7 @@ public class LoginController {
             session.setAttribute(SessionConstants.LoginMember, loginMember);
             log.info(session.getId());
 
-            return "redirect:/log/admin";
+            return "redirect:/log/adminPage";
         }
 
         }catch (NullPointerException e){
