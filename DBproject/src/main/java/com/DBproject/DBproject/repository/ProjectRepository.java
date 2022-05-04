@@ -27,6 +27,12 @@ public class ProjectRepository {
                 .getResultList();
     }
 
+    public Project findByIdN(String id){
+        return em.find(Project.class ,id);
+    }
+
+
+
     public List<Project> findAll(){
         return em.createQuery("select p from Project p ", Project.class)
                 .getResultList();
