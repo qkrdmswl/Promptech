@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>요구사항 9번 프로젝트 등록 및 수정</title>
@@ -48,7 +48,7 @@
     <h2>
         새로운 프로젝트 등록하기
     </h2><br>
-    <form action="/project/projectRegister" th:object="${projectForm}" method="get" >
+    <form action="/project/projectRegister" th:object="${projectForm}" method="post" >
 
         <div class = "form-group">
             <label>프로젝트 아이디</label>

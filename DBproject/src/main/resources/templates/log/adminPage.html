@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>관리자 마이페이지</title>
@@ -94,7 +94,7 @@
     </div>
     <div style="text-align: center;">
         <form  style="display:inline-block;" th:action="@{/employee/edit}" action = method="get">
-            <button type="submit">개인 정보 수정하기</button>
+            <button type="submit" >개인 정보 수정하기</button>
         </form><br>
 
 

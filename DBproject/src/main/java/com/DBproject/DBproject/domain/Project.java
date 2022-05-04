@@ -2,6 +2,7 @@ package com.DBproject.DBproject.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,8 +18,9 @@ public class Project {
     //@Column(length = 50,nullable = false)
     private String ordering_company;
     //@Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate start_date;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate end_date;
 
     //@Column(nullable = false)

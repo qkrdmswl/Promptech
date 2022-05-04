@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
@@ -50,70 +50,74 @@
     </h2><br>
     <form action="/project/projectEdit" method="get" th:object="${projectForm}">
         <div class = "form-group">
-        <label>프로젝트 찾기</label>
-        <input type="text" th:field="*{project_id}" class="form-control" placeholder="프로젝트 아이디를 입력하세요"th:class="${#fields.hasErrors('project_id')}? 'form-control fieldError' : 'form-control'">
-        <p th:if="${#fields.hasErrors('project_id')}" th:errors="*{project_id}">Incorrect date</p>
+            <label>프로젝트 찾기</label>
+            <input type="text" th:field="*{project_id}" class="form-control" placeholder="프로젝트 아이디를 입력하세요"th:class="${#fields.hasErrors('project_id')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('project_id')}" th:errors="*{project_id}">Incorrect date</p>
         </div></br>
         <button type="submit">프로젝트 검색</button>
     </form><br>
 
-    <table border="2">
+    <div th:if="${error}" class="mb-3 alert alert-danger">
+        <stong>해당 아이디가 존재하지 않습니다. </stong>
+    </div><br>
+
+    <table border="2" th:if="${visibility}">
         <caption>검색된 프로젝트 목록</caption>
+
         <thead>
         <tr><th>프로젝트 아이디</th><th>프로젝트 이름</th><th>고객사</th><th>예산</th><th>프로젝트 시작 기간</th><th>프로젝트 종료 기간</th><th></th></tr>
-        </thead>
-        <tbody>
         <tr th:each="form : ${project}">
             <td th:text="${form.project_id}">-</td>
             <td th:text="${form.project_name}">-</td>
             <td th:text="${form.ordering_company}">-</td>
-            <td th:text="${form.project_cost}">15억</td>
-            <td th:text="${form.start_date}">2021-09-01</td>
-            <td th:text="${form.end_date}">2021-12-25</td>
+            <td th:text="${form.project_cost}"></td>
+            <td th:text="${form.start_date}"></td>
+            <td th:text="${form.end_date}"></td>
         </tr>
+        </thead>
+        <tbody>
         </tbody>
     </table><br>
 
-    <h2>
+
+    <h2 th:if="${visibility}">
         프로젝트 수정하기
     </h2><br>
-    <form action="/관리자_마이페이지/프로젝트 수정하기2" method="post" >
 
+   <form action="/project/projectEdit" th:if="${visibility}" th:object="${projectEditForm}"  method="post" >
         <div class = "form-group">
             <label>프로젝트 아이디</label>
-            <input type="text"  placeholder="p1">
+            <input type="text" th:field="*{project_id}"  class="form-control" placeholder="아이디를 입력하세요.">
         </div><br>
-
-
-
 
         <div class = "form-group">
             <label>프로젝트 이름</label>
-            <input type="text" placeholder="프로젝트A">
+            <input type="text" th:field="*{project_name}" class="form-control" placeholder="프로젝트 이름을 입력하세요.">
         </div><br>
 
 
         <div class = "form-group">
             <label>고객사</label>
-            <input type="text" placeholder="고객A">
+            <input type="text" th:field="*{ordering_company}" class="form-control" placeholder="발주처를 입력하세요">
         </div><br>
 
         <div class = "form-group">
             <label>예산</label>
-            <input type="text" placeholder="15억">
+            <input type="text" th:field="*{cost}" class="form-control" placeholder="예산을 입력하세요">
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 시작 일자</label>
-            <input type="text" placeholder="2021-09-01">
+            <input type="text" th:field="*{start_date}" class="form-control" placeholder="프로젝트 시작일자를 입력하세요">
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 종료 일자</label>
-            <input type="text" placeholder="2021-12-25">
+            <input type="text" th:field="*{end_date}" class="form-control" placeholder="프로젝트 종료일자를 입력하세요">
         </div><br>
 
         <button type="submit">수정하기</button><br>
     </form><br>
+
 </body>
 </html>
