@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -30,16 +31,9 @@ public class Works_for {
     @Column(length = 50,nullable = false)
     private String e_job;
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate e_start_d;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate e_end_d;
-
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id",nullable = false)
-    private Employee employee_works;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="project_number",nullable = false)
-    private Project projects;*/
-
 
 }

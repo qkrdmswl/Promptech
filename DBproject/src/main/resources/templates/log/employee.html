@@ -1,72 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 
-    <style>
-        .fieldError {
-            border-color: #bd2130;
-        }
-       form{
-           display: inline;
-       }
+<style>
+    .fieldError {
+        border-color: #bd2130;
+    }
+    form{
+        display: inline;
+    }
 
-    </style>
+</style>
 <body>
-        <h1>직원</h1>
-        <h2 class="mb-3" th:text="|환영합니다  ${employee.employee_name}님|">로그인 사용자 이름 </h2>
-        </br>
+<h1>직원</h1>
+<h2 class="mb-3" th:text="|환영합니다  ${employee.employee_name}님|">로그인 사용자 이름 </h2>
+</br>
 
-        <table class="table table-striped">
-        <thead>
-        <tr>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>참여한 프로젝트 아이디</th>
 
-            <th>참여한 프로젝트 이름</th>
+        <th>참여한 프로젝트 이름</th>
 
-            <th>직무</th>
+        <th>직무</th>
 
-            <th>참여날짜</th>
+        <th>참여날짜</th>
 
-            <th>종료날짜</th>
+        <th>프로젝트에서 나온날짜</th>
 
-            <th>진행상태</th>
+        <th>프로젝트 종료날짜</th>
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="worksFor : ${worksFor}">
-            <td th:text="${worksFor.project.project_name}"></td>
-            <td th:text="${worksFor.e_job}"></td>
-            <td th:text="${worksFor.e_start_d}"></td>
-            <td th:text="${worksFor.e_end_d}"></td>
-            <td th:if="${worksFor.e_end_d == null and worksFor.project.end_date > nowdate}">진행중</td>
-            <td th:if="${worksFor.e_end_d == null and worksFor.project.end_date < nowdate}">종료</td>
-            <td th:if="${worksFor.e_end_d != null and worksFor.project.end_date < nowdate and worksFor.e_end_d<=worksFor.project.end_date}">종료</td>
-            <td th:if="${worksFor.e_end_d != null and worksFor.project.end_date >= nowdate and worksFor.e_end_d <= worksFor.project.end_date}">진행중</td>
-        </tr>
-        </tbody>
-        </table>
-        </br>
-        <div class="row">
-            <div class="col">
-                <form th:action="@{/edit/employee}" method="get">
-                    <button class="w-100 btn btn-dark btn-lg"  type="submit">
-                        정보 수정하기
-                    </button>
-                </form>
-            </div>
-        </div>
+        <th>진행상태</th>
 
-        <br>
-        <br>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="worksFor : ${worksFor}">
+        <td th:text="*{worksFor.project.project_id}"></td>
+        <td th:text="*{worksFor.project.project_name}"></td>
+        <td th:text="*{worksFor.e_job}"></td>
+        <td th:text="*{worksFor.e_start_d}"></td>
+        <td th:text="*{worksFor.e_end_d}"></td>
+        <td th:text="*{worksFor.project.end_date}"></td>
+        <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date < nowdate}">종료</td>
+        <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date >= nowdate}">진행중</td>
+        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date >= nowdate and worksFor.e_end_d >= nowdate}">진행중</td>
+        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date <= nowdate and worksFor.e_end_d < nowdate}">종료</td>
+        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date >= nowdate and worksFor.e_end_d < nowdate}">종료</td>
+    </tr>
+    </tbody>
+</table>
+</br>
+<div class="row">
+    <div class="col">
+        <form th:action="@{/edit/employee}" method="get">
+            <button class="w-100 btn btn-dark btn-lg"  type="submit">
+                정보 수정하기
+            </button>
+        </form>
+    </div>
+</div>
 
-        <div class="row">
-            <div class="col">
-                <form th:action="@{/logout}" method="post">
-                    <button class="w-100 btn btn-dark btn-lg"  type="submit">
-                        로그아웃
-                    </button>
-                </form>
-            </div>
-        </div>
+<br>
+<br>
+
+<div class="row">
+    <div class="col">
+        <form th:action="@{/logout}" method="post">
+            <button class="w-100 btn btn-dark btn-lg"  type="submit">
+                로그아웃
+            </button>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

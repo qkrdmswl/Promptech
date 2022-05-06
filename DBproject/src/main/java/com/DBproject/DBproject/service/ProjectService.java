@@ -4,6 +4,7 @@ import com.DBproject.DBproject.Repository.ProjectRepository;
 import com.DBproject.DBproject.Session.SessionConstants;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Project;
+import com.DBproject.DBproject.domain.Works_for;
 import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,17 +26,22 @@ public class ProjectService {
     }
 
     public String join(Project project) {
-
         validateionDuplicateId(project);
         projectRepository.save(project);
         return project.getProject_id();
-
     }
 
     public List<Project> findAll(){
         return projectRepository.findAll();
     }
-    public List<Project> findOne(String id){return projectRepository.findById(id);}
+
+    // 진행중인 프로젝트 상황들 리스트로 가져오기
+    public List<Works_for>findDoingProjectsInfo(){
+        return projectRepository.findDoingProjectsInfoAll();
+    }
+
+    public List<Project> findOne(String id){
+        return projectRepository.findById(id);}
 
     @Transactional
     public void updateProjectInfo(Project project){
@@ -49,6 +55,7 @@ public class ProjectService {
         foundProject.setStart_date(project.getStart_date());
         foundProject.setEnd_date(project.getEnd_date());
     }
+
 
 
     public boolean validateionDuplicateId(Project project) {

@@ -67,12 +67,12 @@
         <thead>
         <tr><th>프로젝트 아이디</th><th>프로젝트 이름</th><th>고객사</th><th>예산</th><th>프로젝트 시작 기간</th><th>프로젝트 종료 기간</th><th></th></tr>
         <tr th:each="form : ${project}">
-            <td th:text="${form.project_id}">-</td>
-            <td th:text="${form.project_name}">-</td>
-            <td th:text="${form.ordering_company}">-</td>
-            <td th:text="${form.project_cost}"></td>
-            <td th:text="${form.start_date}"></td>
-            <td th:text="${form.end_date}"></td>
+            <td th:text="*{form.project_id}">-</td>
+            <td th:text="*{form.project_name}">-</td>
+            <td th:text="*{form.ordering_company}">-</td>
+            <td th:text="*{form.project_cost}"></td>
+            <td th:text="*{form.start_date}"></td>
+            <td th:text="*{form.end_date}"></td>
         </tr>
         </thead>
         <tbody>

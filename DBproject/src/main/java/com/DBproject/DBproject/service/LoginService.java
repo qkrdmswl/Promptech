@@ -15,8 +15,8 @@ import java.util.List;
 @Service
 @Transactional
 public class LoginService {
-    private final LoginRepository loginRepository;
 
+    private final LoginRepository loginRepository;
 
     @Autowired  // 생성자 주입
     public LoginService(LoginRepository loginRepository) {

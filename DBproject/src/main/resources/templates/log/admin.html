@@ -14,7 +14,7 @@
     <div class="container">
         <div th:replace="fragments/bodyHeader :: bodyHeader" />
          <h1>관리자</h1>
-         <h2 class="mb-3" th:text="|로그인 사용자 이름: ${employee.employee_name}|">로그인 사용자 이름 </h2>
+         <h2 class="mb-3" th:text="|로그인 사용자 이름: *{employee.employee_name}|">로그인 사용자 이름 </h2>
         </br>
 
 

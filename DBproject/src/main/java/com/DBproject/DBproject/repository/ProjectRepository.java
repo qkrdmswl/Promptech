@@ -32,6 +32,14 @@ public class ProjectRepository {
     }
 
 
+    // 진행 중인 프로젝트 상황 가져오기
+    public List<Works_for> findDoingProjectsInfoAll(){
+        return em.createQuery("select w from Works_for w",Works_for.class)
+                .getResultList();
+    }
+
+
+
 
     public List<Project> findAll(){
         return em.createQuery("select p from Project p ", Project.class)

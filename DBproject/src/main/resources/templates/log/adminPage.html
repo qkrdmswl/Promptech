@@ -56,42 +56,68 @@
             </thead>
             <tbody>
                 <tr th:each="project : ${project}">
-                    <td th:text="${project.project_id}">프로젝트아이디</td>
-                    <td th:text="${project.project_name}" >프로젝트이름</td>
-                    <td th:text="${project.ordering_company}">고객사</td>
-                    <td th:text="${project.start_date}">프로젝트시작기간</td>
-                    <td th:text="${project.end_date}">프로젝트종료기간</td>
-                    <td th:text="${project.project_cost}">프로젝트종료기간</td>
+                    <td th:text="*{project.project_id}">프로젝트아이디</td>
+                    <td th:text="*{project.project_name}" >프로젝트이름</td>
+                    <td th:text="*{project.ordering_company}">고객사</td>
+                    <td th:text="*{project.start_date}">프로젝트시작기간</td>
+                    <td th:text="*{project.end_date}">프로젝트종료기간</td>
+                    <td th:text="*{project.project_cost}">프로젝트종료기간</td>
                 </tr>
-                <!--<tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
             </tbody>
-        </table><br>
+        </table>
+        <br>
     </div>
-    <div style="display:inline-block; height:150px; overflow : scroll;" id="table2">
+        <!--<tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+    <div style="display:inline-block; height:150px; overflow : scroll;" id="table2" >
         <table border="1">
-            <caption>Works_for 목록</caption>
+            <caption>프로젝트 진행 상황</caption>
             <thead>
-                <tr><th>직원 아이디</th><th>프로젝트 아이디</th><th>직책</th><th>프로젝트 참여 날짜</th><th>프로젝트 이탈 날짜</th></tr>
+            <tr>
+                <th>직원 아이디</th>
+                <th>프로젝트 아이디</th>
+                <th>직책</th>
+                <th>프로젝트 참여일자</th>
+                <th>프로젝트 종료일자</th>
+
+            </tr>
             </thead>
             <tbody>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-                <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>
+            <tr th:each="works_for : ${doingPInfo}">
+                <td th:text="*{works_for.employee.employee_id}">직원 아이디</td>
+                <td th:text="*{works_for.project.project_id}" >프로젝트 아이디</td>
+                <td th:text="*{works_for.e_job}">직책</td>
+                <td th:text="*{works_for.e_start_d}">프로젝트 참여 시작일자</td>
+                <td th:text="*{works_for.e_end_d}">프로젝트 참여 종료일자</td>
+            </tr>
             </tbody>
         </table><br>
     </div>
+<!--    <table border="1">-->
+<!--        <caption>Works_for 목록</caption>-->
+<!--        <thead>-->
+<!--        <tr><th>직원 아이디</th><th>프로젝트 아이디</th><th>직책</th><th>프로젝트 참여 날짜</th><th>프로젝트 이탈 날짜</th></tr>-->
+<!--        </thead>-->
+<!--        <tbody>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
+<!--        </tbody>-->
+<!--    </table><br>-->
+<!--    </div>-->
+
+
     <div style="text-align: center;">
         <form  style="display:inline-block;" th:action="@{/edit/employee}" action = method="get">
             <button type="submit" >개인 정보 수정하기</button>
@@ -106,7 +132,7 @@
             <button type="submit">프로젝트 등록하기</button>
         </form><br>
 
-        <form  style="display:inline-block;" action = "" method="get">
+        <form  style="display:inline-block;" action = "@" method="get">
             <button type="submit">Works_for 등록하기</button>
         </form><br>
 
