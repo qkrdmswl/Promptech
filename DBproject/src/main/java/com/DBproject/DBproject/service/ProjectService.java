@@ -41,7 +41,7 @@ public class ProjectService {
     public void updateProjectInfo(Project project){
         // JPA 자동 변경 감지 - merge 쓰지 않고, 준영속 엔티티(DB에 한번들어갔다나온) 를 영속상태에서 JPA 변경 처리 코드
         // merge 쓰면 안됨 --> 수정되지않은값은 그냥 기존값이 아니라 null로 set 할 수 있음
-        Project foundProject=projectRepository.findByIdN(project.getProject_id());
+        Project foundProject=projectRepository.findByProjcetId(project.getProject_id());
         foundProject.setProject_id(project.getProject_id());
         foundProject.setOrdering_company(project.getOrdering_company());
         foundProject.setProject_name(project.getProject_name());

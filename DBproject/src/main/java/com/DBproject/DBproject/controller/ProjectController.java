@@ -57,7 +57,7 @@ public class ProjectController {
     }
 
     @GetMapping("/project/projectEdit")
-    public String ProjectFindOne(@Valid @ModelAttribute("projectForm") FindOneProjectForm form,BindingResult result, Model model, HttpServletRequest request) {
+    public String ProjectFindOne(@Valid @ModelAttribute("projectForm") FindOneProjectForm form,BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/project/projectEdit";
         }
@@ -67,13 +67,13 @@ public class ProjectController {
             if (project.isEmpty()) {
                 throw new NoIdException("프로젝트가 존재하지 않습니다.");
             }
+            boolean visible =true;
             model.addAttribute("project", project);
             Project projects = project.get(0);
             model.addAttribute("projects",projects);
             ProjectEditForm projectEditForm = getProjectEditForm(project.get(0));
             model.addAttribute("projectEditForm",projectEditForm);
-            boolean visibility =true ;
-            model.addAttribute("visibility",visibility);
+            model.addAttribute("visibility",visible);
             return "/project/projectEdit";
         } catch (NoIdException e) {
             model.addAttribute("error", new NoIdException(e.getMessage()));

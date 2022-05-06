@@ -87,7 +87,7 @@
    <form action="/project/projectEdit" th:if="${visibility}" th:object="${projectEditForm}"  method="post" >
         <div class = "form-group">
             <label>프로젝트 아이디</label>
-            <input type="text" th:field="*{project_id}"  class="form-control" placeholder="아이디를 입력하세요.">
+            <input type="text" th:field="*{project_id}"  class="form-control" style="background-color: #adb5bd" readonly>
         </div><br>
 
         <div class = "form-group">

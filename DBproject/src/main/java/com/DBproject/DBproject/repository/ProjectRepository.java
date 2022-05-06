@@ -27,7 +27,7 @@ public class ProjectRepository {
                 .getResultList();
     }
 
-    public Project findByIdN(String id){
+    public Project findByProjcetId(String id){
         return em.find(Project.class ,id);
     }
 

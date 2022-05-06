@@ -5,23 +5,16 @@ import com.DBproject.DBproject.Service.LoginService;
 import com.DBproject.DBproject.Session.SessionConstants;
 import com.DBproject.DBproject.controller.dto.LoginForm;
 import com.DBproject.DBproject.domain.Employee;
-import com.DBproject.DBproject.domain.Works_for;
-import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
-import com.DBproject.DBproject.exception.NoIdException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Slf4j
 @Controller
