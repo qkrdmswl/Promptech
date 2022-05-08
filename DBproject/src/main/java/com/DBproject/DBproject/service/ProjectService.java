@@ -1,23 +1,27 @@
 package com.DBproject.DBproject.Service;
-
+import com.DBproject.DBproject.Repository.EmployeeRepository;
 import com.DBproject.DBproject.Repository.ProjectRepository;
 import com.DBproject.DBproject.Session.SessionConstants;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Project;
 import com.DBproject.DBproject.domain.Works_for;
 import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
 public class ProjectService {
+
     private final ProjectRepository projectRepository;
 
     @Autowired  // 생성자 주입
@@ -25,6 +29,8 @@ public class ProjectService {
         this.projectRepository = projectRepository;
     }
 
+
+    // 프로젝트 저장
     public String join(Project project) {
         validateionDuplicateId(project);
         projectRepository.save(project);
@@ -35,13 +41,13 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-    // 진행중인 프로젝트 상황들 리스트로 가져오기
-    public List<Works_for>findDoingProjectsInfo(){
-        return projectRepository.findDoingProjectsInfoAll();
-    }
 
     public List<Project> findOne(String id){
         return projectRepository.findById(id);}
+
+    public Project findProject(String id){
+        return projectRepository.findByProjcetId(id);
+    }
 
     @Transactional
     public void updateProjectInfo(Project project){
@@ -56,8 +62,7 @@ public class ProjectService {
         foundProject.setEnd_date(project.getEnd_date());
     }
 
-
-
+    // 프로젝트 아이디 중복 방지
     public boolean validateionDuplicateId(Project project) {
         List<Project> findId = projectRepository.findById(project.getProject_id());
         if (!findId.isEmpty()) {
@@ -65,4 +70,5 @@ public class ProjectService {
         }
         return true;
     }
+
 }
