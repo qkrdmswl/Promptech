@@ -18,8 +18,8 @@ public class ProjectInputService {
 
     @Autowired  // DI
     public ProjectInputService(ProjectRepository projectRepository, EmployeeRepository employeeRepository) {
-        this.projectRepository = projectRepository;
-        this.employeeRepository = employeeRepository;
+        this.projectRepository = projectRepository ;
+        this.employeeRepository = employeeRepository ;
     }
 
     // 진행중인 프로젝트 상황들 리스트로 가져오기
