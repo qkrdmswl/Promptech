@@ -13,7 +13,7 @@ import java.util.List;
 @Transactional
 public class ProjectInputService {
 
-    private final ProjectRepository projectRepository;
+    private final ProjectRepository projectRepository ;
     private final EmployeeRepository employeeRepository;
 
     @Autowired  // DI
