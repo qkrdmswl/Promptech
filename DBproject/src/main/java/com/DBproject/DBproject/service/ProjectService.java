@@ -41,7 +41,6 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
-
     public List<Project> findOne(String id){
         return projectRepository.findById(id);}
 

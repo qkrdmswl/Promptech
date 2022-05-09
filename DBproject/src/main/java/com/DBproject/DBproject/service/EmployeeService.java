@@ -8,7 +8,6 @@ import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Works_for;
 import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.quartz.QuartzTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
@@ -71,5 +70,4 @@ public class EmployeeService {
     public List<Works_for> works_fors(String id){
         return employeeRepository.findById(id);
     }
-
 }

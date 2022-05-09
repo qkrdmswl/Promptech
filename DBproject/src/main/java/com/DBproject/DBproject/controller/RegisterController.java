@@ -19,7 +19,6 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class RegisterController {
 
-
     private final EmployeeService employeeService;
 
     @GetMapping("/registers/new")
@@ -54,6 +53,7 @@ public class RegisterController {
         }
 
     }
+
 
 
 

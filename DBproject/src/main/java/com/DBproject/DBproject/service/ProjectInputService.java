@@ -1,20 +1,13 @@
 package com.DBproject.DBproject.service;
-
 import com.DBproject.DBproject.Repository.ProjectRepository;
 import com.DBproject.DBproject.Repository.EmployeeRepository;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Project;
 import com.DBproject.DBproject.domain.Works_for;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-
 import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -34,6 +27,20 @@ public class ProjectInputService {
         return projectRepository.findDoingProjectsInfoAll();
     }
 
+//    // Works_for 특정 사원 가져오기
+//    public List<Works_for> findPwEmployee(int id){
+//        return projectRepository.findEmployeeById(id);
+//    }
+//
+//    // Works_for 특정 프로젝트 가져오기
+//    public List<Works_for> findPwProject(String id){
+//        return projectRepository.findProjectById(id);
+//    }
+//
+    public List<Works_for> findPrEmById(int employeeId,String projectId){
+        return projectRepository.findEmployeeById(employeeId,projectId);
+    }
+
     // works_for id 가지고 프로젝트 찾기
     public Project findProjectById(String projectId) {
         return projectRepository.findByProjcetId(projectId);
@@ -49,5 +56,6 @@ public class ProjectInputService {
     public void inputProjectSave(Works_for wf) {
         projectRepository.saveWorkingProject(wf);
     }
+
 
 }

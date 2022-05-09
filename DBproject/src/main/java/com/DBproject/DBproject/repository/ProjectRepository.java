@@ -48,5 +48,19 @@ public class ProjectRepository {
                 .getResultList();
     }
 
+    public List<Works_for> findEmployeeById(int employeeId,String projectId) {
+        return em.createQuery("select w from Works_for w where w.employee.employee_id=:e_id and w.project.project_id=:p_id", Works_for.class)
+                .setParameter("e_id", employeeId)
+                .setParameter("p_id",projectId)
+                .getResultList();
+    }
+
+    public List<Works_for> findProjectById(String id) {
+        return em.createQuery("select w from Works_for  w where w.project.project_id=:id", Works_for.class)
+                .setParameter("id", id)
+                .getResultList();
+
+    }
+
 
 }
