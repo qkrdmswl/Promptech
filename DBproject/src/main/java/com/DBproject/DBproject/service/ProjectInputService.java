@@ -14,7 +14,7 @@ import java.util.List;
 public class ProjectInputService {
 
     private final ProjectRepository projectRepository ;
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository ;
 
     @Autowired  // DI
     public ProjectInputService(ProjectRepository projectRepository, EmployeeRepository employeeRepository) {
