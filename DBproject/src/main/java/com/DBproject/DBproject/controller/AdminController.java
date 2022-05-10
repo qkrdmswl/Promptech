@@ -39,11 +39,42 @@ public class AdminController {
         return "/log/adminPage";
     }
 
-    // 프로젝트 검색 등록 폼 가져오기
+    // 프로젝트 등록 폼 가져오기
     @GetMapping("/project/new")
     public String goProjectRegister(Model model) {
         model.addAttribute("projectForm", new ProjectForm());
         return "/project/projectRegister";
+    }
+    // 프로젝트 등록
+    @PostMapping("/project/projectRegister")
+    public String createProject(@Valid ProjectForm form, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "/project/projectRegister";
+        }
+        try {
+            Project project = new Project();
+            project.setProject_id(form.getProject_id());
+            project.setProject_name(form.getProject_name());
+            project.setOrdering_company(form.getOrdering_company());
+            project.setStart_date(LocalDate.parse(form.getStart_date(), DateTimeFormatter.ISO_DATE));
+            project.setEnd_date(LocalDate.parse(form.getEnd_date(), DateTimeFormatter.ISO_DATE));
+            project.setProject_cost(Long.parseLong(form.getCost()));
+
+            projectService.join(project);
+            return "redirect:/log/adminPage";
+
+        } catch (AlreadyRegisteredIdException v) {
+            model.addAttribute("error", new AlreadyRegisteredIdException(v.getMessage()));
+            return "/project/projectRegister";
+        }
+
+    }
+
+    // 프로젝트 수정폼 가져오기
+    @GetMapping("/project/edit")
+    public String goProjectEdit(Model model) {
+        model.addAttribute("projectForm", new FindOneProjectForm());
+        return "/project/projectEdit";
     }
 
     //프로젝트를 검색 후 해당 프로젝트의 정보를 담은 폼을 가져오기
@@ -86,12 +117,7 @@ public class AdminController {
     }
 
 
-    // 프로젝트 수정폼 가져오기
-    @GetMapping("/project/edit")
-    public String goProjectEdit(Model model) {
-        model.addAttribute("projectForm", new FindOneProjectForm());
-        return "/project/projectEdit";
-    }
+
 
     // 프로젝트 수정 완료
     @PostMapping("/project/projectEdit")
@@ -112,37 +138,14 @@ public class AdminController {
     }
 
 
-    // 프로젝트 등록
-    @PostMapping("/project/projectRegister")
-    public String createProject(@Valid ProjectForm form, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "/project/projectRegister";
-        }
-        try {
-            Project project = new Project();
-            project.setProject_id(form.getProject_id());
-            project.setProject_name(form.getProject_name());
-            project.setOrdering_company(form.getOrdering_company());
-            project.setStart_date(LocalDate.parse(form.getStart_date(), DateTimeFormatter.ISO_DATE));
-            project.setEnd_date(LocalDate.parse(form.getEnd_date(), DateTimeFormatter.ISO_DATE));
-            project.setProject_cost(Long.parseLong(form.getCost()));
 
-            projectService.join(project);
-            return "redirect:/log/adminPage";
-
-        } catch (AlreadyRegisteredIdException v) {
-            model.addAttribute("error", new AlreadyRegisteredIdException(v.getMessage()));
-            return "/project/projectRegister";
-        }
-
-    }
 
 
     // 프로젝트 투입 등록폼이동
     @GetMapping("/input/project")
     public String assignProject(Model model) {
         model.addAttribute("inputProject", new RegisterPWorkerForm());
-        return "/worksfor/projectStartRegister";
+        return "/works/projectStartRegister";
     }
 
 
@@ -168,19 +171,20 @@ public class AdminController {
 
     // 수정폼 뿌리기
     @GetMapping("/input/project/edit")
-    public String goEditInputProject() {
-        return "/worksfor/editInputProject";
+    public String goEditInputProject(Model model) {
+        model.addAttribute("findForm",new FindPWorkerForm());
+        return "/works/editInputProject";
     }
 
     // 수정폼 검색
     @GetMapping("/input/project/editForm")
     public String SearchInputProject(@Valid @ModelAttribute("findForm")FindPWorkerForm findPWorkerForm,Model model,BindingResult result) {
         if (result.hasErrors()) {
-            return "/worksfor/editInputProject";
+            return "/works/editInputProject";
         }
         try {
             boolean visible = true;
-            List<Works_for> prem = projectInputService.findPrEmById(findPWorkerForm.getEmployee_id(),findPWorkerForm.getProject_id());
+            List<Works_for> prem = projectInputService.findPrEmById(Integer.valueOf(findPWorkerForm.getEmployee_id()),findPWorkerForm.getProject_id());
             // 둘 중 하나라도 works-for 엔티티에 없을때
             if (prem.isEmpty()) {
                 throw new NoIdException("진행중인 프로젝트 또는, 프로젝트에 임하는 사원이 존재하지 않습니다.");
@@ -197,10 +201,10 @@ public class AdminController {
             model.addAttribute("projectEditForm", editPWorkerForm);
             model.addAttribute("visibility", visible);
 //            model.addAttribute("findPWorker", new RegisterPWorkerForm());
-            return "/worksfor/editInputProject";
+            return "/works/editInputProject";
         } catch (NoIdException e) {
             model.addAttribute("error", new NoIdException(e.getMessage()));
-            return "/worksfor/editInputProject";
+            return "/works/editInputProject";
         }
 
     }

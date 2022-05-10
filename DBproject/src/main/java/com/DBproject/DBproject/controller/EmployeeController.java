@@ -4,6 +4,7 @@ import com.DBproject.DBproject.Service.EmployeeService;
 import com.DBproject.DBproject.Session.SessionConstants;
 import com.DBproject.DBproject.controller.dto.EditForm;
 import com.DBproject.DBproject.controller.dto.LoginForm;
+import com.DBproject.DBproject.domain.Authority;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Works_for;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +62,11 @@ public class EmployeeController {
     public String editEmployeeInfo( @SessionAttribute(name = SessionConstants.LoginMember, required = false) Employee loginEmployee,EditForm form){
         getFormAndEditEmployee(loginEmployee, form); // 준영속 엔티티에 들어가기 전 폼으로부터 데이터받고, 직원을 수정할 준비
         employeeService.updateEmployeeInfo(loginEmployee); // 수정
+        //관리자도 개인정보수정을 해야하므로 권한에 따라 페이지를 다르게 redirect 해주어야 한다.
+
+        if (loginEmployee.getAuthority()== Authority.ADMIN){
+            return "redirect:/log/adminPage";
+        }
         return "redirect:/log/employee";
     }
     private void getFormAndEditEmployee(Employee loginEmployee, EditForm form) {

@@ -48,7 +48,7 @@
     <h2>
         프로젝트 현황 검색하기
     </h2><br>
-    <form action="/input/project/edit" method="get" th:object="${findForm}">
+    <form action="/input/project/editForm" method="get" th:object="${findForm}">
         <div class="form-group">
             <label>Works_for 찾기</label><br><br>
             <input type="text" th:field="*{employee_id}" placeholder="직원 아이디를 입력하세요"
