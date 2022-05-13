@@ -1,37 +1,130 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <head th:replace="fragments/header :: header">
+<!--    한글 깨지는 이슈때문에 추가한것입니다 -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <style>
         .fieldError {
             border-color: #bd2130;
         }
+        h1 {
+            font-weight: bolder;
+        }
 
     </style>
 <body>
-        <h1>경영진</h1>
+<!--    <button type="button" class="btn btn-primary">프로젝트 조회</button>-->
+<!--    <button type="button" class="btn btn-primary">직원 조회</button>-->
+    <div class="container">
+<!--        <ul class="nav nav-tabs">-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link active" href="ceo_project.html">프로젝트 조회</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="ceo_employee.html">직원 조회</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+        <div style='width:1000px;margin:0 auto;margin-top:50px;font-size: 15px;'>
+            <div th:replace="fragments/bodyHeader :: bodyHeader" />
+            <h1 style="margin-bottom: 20px;">경영진</h1>
+            <ul class="nav nav-tabs">
+                <li class='active'><a href="#tabmenu_01"data-toggle="tab">프로젝트 조회</a></li>
+                <li><a href="#tabmenu_02" data-toggle="tab">직원 조회</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane in active" id="tabmenu_01">
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline" form action="/log/ceo/projectInfo" method="post">
+                            <input class= input-type="text" name="projectId" placeholder="프로젝트 검색" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+                        </form>
+                    </nav>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">프로젝트 아이디</th>
+                            <th scope="col">프로젝트 이름</th>
+                            <th scope="col">투입 사원 번호</th>
+                            <th scope="col">고객사</th>
+                            <th scope="col">예산</th>
+                            <th scope="col">시작일자</th>
+                            <th scope="col">종료일자</th>
+                            <th scope="col">진행중/완료</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+<!--      프로젝트 검색 전 모든 프로젝트리스트                  -->
+     <tr th:each="works : ${pjworkinglist}">
+        <td th:text="*{works.project.project_id}"></td>
+        <td th:text="*{works.project.project_name}"></td>
+         <td th:text="*{works.employee.employee_id}"></td>
+         <td th:text="*{works.project.ordering_company}"></td>
+         <td th:text="*{works.project.project_cost}"></td>
+        <td th:text="*{works.project.start_date}"></td>
+        <td th:text="*{works.project.end_date}"></td>
+        <td th:if="*{works.project.end_date < currentDate}">종료</td>
+        <td th:if="*{works.project.end_date >= currentDate}">진행중</td>
+     </tr>
+<!--프로젝트 조회된 결과 -->
+     <tr th:each="searchpj : ${pjInfo}">
+         <td th:text="*{searchpj.project.project_id}"></td>
+         <td th:text="*{searchpj.project.project_name}"></td>
+         <td th:text="*{searchpj.employee.employee_id}"></td>
+         <td th:text="*{searchpj.project.ordering_company}"></td>
+         <td th:text="*{searchpj.project.project_cost}"></td>
+         <td th:text="*{searchpj.project.start_date}"></td>
+         <td th:text="*{searchpj.project.end_date}"></td>
+         <td th:if="*{searchpj.project.end_date < currentDate}">종료</td>
+         <td th:if="*{searchpj.project.end_date >= currentDate}">진행중</td>
+     </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <ul class="pagination">
 
-
-        <div class="row">
-            <div class="col">
-                <form th:action="@{/edit/employee}" method="get">
-                    <button class="w-100 btn btn-dark btn-lg"  type="submit">
-                        정보 수정하기
-                    </button>
-                </form>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane" th:id="tabmenu_02">
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline" form action="/log/ceo/employeeInfo" method="post">
+                            <input type="text" name="employeeId" placeholder="직원 검색" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+                        </form>
+                    </nav>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">사번</th>
+                            <th scope="col">이름</th>
+                            <th scope="col">전화번호</th>
+                            <th scope="col">최종학력</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+<!--       직원 검색 전 직원리스트                 -->
+                        <tr th:each="employee : ${emlist}">
+                            <td th:text="*{employee.employee_id}"></td>
+                            <td th:text="*{employee.employee_name}"></td>
+                            <td th:text="*{employee.phoneNum}"></td>
+                            <td th:text="*{employee.employee_school}"></td>
+                        </tr>
+                        <tr th:each=" em : ${emInfo}">
+                            <td th:text="*{em.employee_id}"></td>
+                            <td th:text="*{em.employee_name}"></td>
+                            <td th:text="*{em.phoneNum}"></td>
+                            <td th:text="*{em.employee_id}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <div th:replace="fragments/footer :: footer" />
         </div>
-
-        </br>
-        <div class="row">
-            <div class="col">
-                <form th:action="@{/logout}" method="post">
-                    <button class="w-100 btn btn-dark btn-lg"  type="submit">
-                        로그아웃
-                    </button>
-                </form>
-            </div>
-        </div>
+    </div>
 </body>
 </html>

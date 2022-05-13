@@ -25,6 +25,10 @@ public class EmployeeRepository {
     public Employee findOne(int id) {
         return em.find(Employee.class, id);
     }
+    public List<Employee> findAll(){
+        return em.createQuery("select e from Employee e",Employee.class)
+                .getResultList();
+    }
 
     public List<Employee> findByNum(String num){
         return em.createQuery("select e from Employee e where e.employee_number = :num",Employee.class)
