@@ -1,97 +1,60 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
-    <title>요구사항 9번 프로젝트 등록 및 수정</title>
+    <title>새로운 프로젝트 등록</title>
     <style>
-        * { font-family : Arial}
-        table { border-collapse: collapse; }
-        tbody tr:nth-child(odd) { background-color: #e6f1ff; }
-        tbody tr:nth-child(even) { background-color: #f0f7ff; }
-        tr { border-top: 1px solid black; border-bottom: 1px solid black; }
-        td { padding: 5px; }
-        body {
-              background-color: #ccc;
-              padding: 10px;
-            }
-        button {
-          align-items: center;
-          appearance: button;
-          background-color: #0276FF;
-          border-radius: 8px;
-          border-style: none;
-          box-shadow: rgba(255, 255, 255, 0.25) 0 1px 2px inset;
-          box-sizing: border-box;
-          color: #fff;
-          cursor: pointer;
-          display: flex;
-          flex-direction: row;
-          flex-shrink: 0;
-          font-family: "Arial",sans-serif;
-          font-size: 100%;
-          line-height: 1.15;
-          margin: 25px;
-          padding: 10px 21px;
-          text-align: center;}
-        h2 {padding: 10px; border:5px double #848484; border-radius:10px;}
-        input[type=text] {
-            width : 300px;
-            font-size: 15px;
-            font-weight: 700;
-            border-radius: 6px;
-            border: 0;
-            outline: 0;
-        }
     </style>
 </head>
 <body>
-    <h2>
+    <h2 class="text-center">
         새로운 프로젝트 등록하기
     </h2><br>
     <form action="/project/projectRegister" th:object="${projectForm}" method="post" >
-
         <div class = "form-group">
             <label>프로젝트 아이디</label>
-            <input type="text" th:field="*{project_id}" class="form-control" placeholder="프로젝트 아이디를 입력하세요" th:class="${#fields.hasErrors('project_id')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('project_id')}"th:errors="*{project_id}">Incorrect date</p>
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{project_id}" placeholder="프로젝트 아이디를 입력하세요" th:class="${#fields.hasErrors('project_id')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('project_id')}"th:errors="*{project_id}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 이름</label>
-            <input type="text" th:field="*{project_name}" class="form-control" placeholder="프로젝트 이름을 입력하세요" th:class="${#fields.hasErrors('project_name')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('project_name')}"th:errors="*{project_name}">Incorrect date</p>
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{project_name}" placeholder="프로젝트 이름을 입력하세요" th:class="${#fields.hasErrors('project_name')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('project_name')}"th:errors="*{project_name}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
-
 
         <div class = "form-group">
             <label>고객사</label>
-            <input type="text" th:field="*{ordering_company}" class="form-control" placeholder="고객사를 입력하세요" th:class="${#fields.hasErrors('ordering_company')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('ordering_company')}"th:errors="*{ordering_company}">Incorrect date</p>
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{ordering_company}" placeholder="고객사를 입력하세요" th:class="${#fields.hasErrors('ordering_company')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('ordering_company')}"th:errors="*{ordering_company}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>예산</label>
-            <input type="text" th:field="*{cost}" class="form-control" placeholder="프로젝트 예산을 입력하세요" th:class="${#fields.hasErrors('cost')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('cost')}"th:errors="*{cost}">Incorrect date</p>
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{cost}" placeholder="프로젝트 예산을 입력하세요" th:class="${#fields.hasErrors('cost')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('cost')}"th:errors="*{cost}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 시작 일자</label>
-            <input type="text" th:field="*{start_date}" class="form-control" placeholder="(yyyy-MM-dd) 프로젝트 시작 날짜를 입력하세요" th:class="${#fields.hasErrors('start_date')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('start_date')}"th:errors="*{start_date}">Incorrect date</p>
+            <input  type="text" th:field="*{start_date}" class="form-control" placeholder="(yyyy-MM-dd) 프로젝트 시작 날짜를 입력하세요" th:class="${#fields.hasErrors('start_date')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('start_date')}"th:errors="*{start_date}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 종료 일자</label>
-            <input type="text" th:field="*{end_date}" class="form-control" placeholder="(yyyy-MM-dd) 프로젝트 종료 날짜를 입력하세요" th:class="${#fields.hasErrors('end_date')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('end_date')}"th:errors="*{end_date}">Incorrect date</p>
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{end_date}" placeholder="(yyyy-MM-dd) 프로젝트 종료 날짜를 입력하세요" th:class="${#fields.hasErrors('end_date')}? 'form-control fieldError' : 'form-control'">
+            <p th:if="${#fields.hasErrors('end_date')}"th:errors="*{end_date}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
-        <button type="submit">프로젝트 등록</button><br>
+        <button class="btn btn-primary" style="float: right;" type="submit">프로젝트 등록</button><br>
     </form><br>
+
     <div class="row mb-3">
         <div class="col-8">
-
             <div th:if="${error}" class="mb-3 alert alert-danger">
                 <stong>해당 아이디가 존재합니다. </stong>
             </div>

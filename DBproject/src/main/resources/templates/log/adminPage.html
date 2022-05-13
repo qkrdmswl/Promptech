@@ -1,57 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
     <title>관리자 마이페이지</title>
     <style>
-        * { font-family : Arial}
-        table { border-collapse: collapse; }
-        tbody tr:nth-child(odd) { background : #e6f1ff; }
-        tbody tr:nth-child(even) { background : aliceblue; }
-        thead tr {background : beige;}
-        tr { border-top: 1px solid black; border-bottom: 1px solid black; }
-        td { padding: 5px; }
-        body {
-              background-color: #ccc;
-              padding: 10px;
-            }
-        button {
-          align-items: center;
-          appearance: button;
-          background-color: #0276FF;
-          border-radius: 8px;
-          border-style: none;
-          box-shadow: rgba(255, 255, 255, 0.25) 0 1px 2px inset;
-          box-sizing: border-box;
-          color: #fff;
-          cursor: pointer;
-          display: flex;
-          flex-direction: row;
-          flex-shrink: 0;
-          font-family: "Arial",sans-serif;
-          font-size: 100%;
-          line-height: 1.15;
-          margin: 25px;
-          padding: 10px 21px;
-          text-align: center;}
-        h2 {padding: 10px; border:5px double #848484; border-radius:10px;}
-        #table1 {position: relative; left : 180px;}
-        #table2 {position: relative; right : -220px;}
+        #table1 {position: relative; left : 300px;}
+        #table2 {position: relative; left : 350px;}
     </style>
 </head>
 <body>
-    <h2 th:text="|환영합니다 ${admin.employee_name}님|">로그인 사용자 이름</h2><br>
-    <div style="display:inline-block; height:150px; overflow : scroll;" id="table1" >
-        <table border="1">
-            <caption>프로젝트 목록</caption>
+    <h2 class="text-center" th:text="|환영합니다 ${admin.employee_name}님|">로그인 사용자 이름</h2><br>
+    <div style="display:inline-block; height : 400px; width : 400px; overflow : scroll;" id="table1" >
+        <table class="table table-hover">
+            <caption class="text-primary">프로젝트 목록</caption>
             <thead>
                 <tr>
-                    <th>프로젝트 아이디</th>
-                    <th>프로젝트 이름</th>
-                    <th>고객사</th>
-                    <th>프로젝트 시작 기간</th>
-                    <th>프로젝트 종료 기간</th>
-                    <th>예산</th>
+                    <th scope="col">프로젝트 아이디</th>
+                    <th scope="col">프로젝트 이름</th>
+                    <th scope="col">고객사</th>
+                    <th scope="col">프로젝트 시작 기간</th>
+                    <th scope="col">프로젝트 종료 기간</th>
+                    <th scope="col">예산</th>
                 </tr>
             </thead>
             <tbody>
@@ -67,24 +39,17 @@
         </table>
         <br>
     </div>
-        <!--<tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>
-               <tr><td>p1</td><td>프로젝트A</td><td>고객A</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-    <div style="display:inline-block; height:150px; overflow : scroll;" id="table2" >
-        <table border="1">
-            <caption>프로젝트 진행 상황</caption>
+
+    <div style="display:inline-block; height : 400px; width : 400px; overflow : scroll;" id="table2" >
+        <table class="table table-hover">
+            <caption class="text-primary">프로젝트 진행 상황</caption>
             <thead>
             <tr>
-                <th>직원 아이디</th>
-                <th>프로젝트 아이디</th>
-                <th>직책</th>
-                <th>프로젝트 참여일자</th>
-                <th>프로젝트 종료일자</th>
-
+                <th scope="col">직원 아이디</th>
+                <th scope="col">프로젝트 아이디</th>
+                <th scope="col">직책</th>
+                <th scope="col">프로젝트 참여일자</th>
+                <th scope="col">프로젝트 종료일자</th>
             </tr>
             </thead>
             <tbody>
@@ -97,57 +62,32 @@
             </tr>
             </tbody>
         </table><br>
-    </div>
-<!--    <table border="1">-->
-<!--        <caption>Works_for 목록</caption>-->
-<!--        <thead>-->
-<!--        <tr><th>직원 아이디</th><th>프로젝트 아이디</th><th>직책</th><th>프로젝트 참여 날짜</th><th>프로젝트 이탈 날짜</th></tr>-->
-<!--        </thead>-->
-<!--        <tbody>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        <tr><td>3</td><td>p1</td><td>PM</td><td>2021-09-01</td><td>2021-12-25</td></tr>-->
-<!--        </tbody>-->
-<!--    </table><br>-->
-<!--    </div>-->
-
+    </div><br><br>
 
     <div style="text-align: center;">
-        <form  style="display:inline-block;" th:action="@{/edit/employee}" action = method="get">
-            <button type="submit" >개인 정보 수정하기</button>
+        <form class = "form-inline"  th:action="@{/edit/employee}" action = method="get">
+            <button style = "height : 50px; width : 1000px;" class="btn btn-primary" type="submit" >개인 정보 수정하기</button>
         </form><br>
 
-
-        <form  style="display:inline-block;" th:action="@{/project/edit}" method="get">
-            <button type="submit">프로젝트 수정하기</button>
+        <form class = "form-inline"  th:action="@{/project/new}" method="get">
+            <button style = "height : 50px; width : 1000px;" class="btn btn-primary" type="submit">프로젝트 등록하기</button>
         </form><br>
 
-        <form  style="display:inline-block;" th:action="@{/project/new}" method="get">
-            <button type="submit">프로젝트 등록하기</button>
+        <form class = "form-inline"  th:action="@{/project/edit}" method="get">
+            <button style = "height : 50px; width : 1000px;" class="btn btn-primary" type="submit">프로젝트 수정하기</button>
         </form><br>
 
-        <form  style="display:inline-block;" th:action = "@{/input/project}"  method="get">
-            <button type="submit"> Works_for 등록하기</button>
+        <form class = "form-inline"  th:action = "@{/input/project}"  method="get">
+            <button style = "height : 50px; width : 1000px;" class="btn btn-primary" type="submit"> Works_for 등록하기</button>
         </form><br>
 
-        <form  style="display:inline-block;" th:action = "@{/input/project/edit}" method="get">
-            <button type="submit">Works_for 수정하기</button>
+        <form class = "form-inline"  th:action = "@{/input/project/edit}" method="get">
+            <button style = "height : 50px; width : 1000px;" class="btn btn-primary" type="submit">Works_for 수정하기</button>
         </form><br>
+    </div><br><br>
 
-
-    </div>
     <form th:action="@{/logout}" method="post">
-        <button class="w-100 btn btn-dark btn-lg"  type="submit">
-            로그아웃
-        </button>
+        <button style = "height : 50px; width : 100px; float: right;" class="btn btn-primary" type="submit">로그아웃</button>
     </form>
-
-
 </body>
 </html>
