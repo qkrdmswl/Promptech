@@ -12,9 +12,10 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
+@Table(indexes = @Index(name="idx_logid_password", columnList = "log_id, password",unique = true))
 public class Employee {
     @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private int employee_id;
+    private Integer employee_id;
     @Column(unique = true ,length=25,nullable = false)
     private String employee_number;
     @Column(length = 50,nullable = false)
@@ -25,7 +26,7 @@ public class Employee {
     @Column(length = 25,nullable = false)
     @Enumerated(EnumType.STRING)
     private Authority authority;
-    @Column(length = 50,nullable = false)
+    @Column(length = 50,nullable = false,unique = true)
     private String log_id;
     @Column(length = 50,nullable = false)
     private String password;

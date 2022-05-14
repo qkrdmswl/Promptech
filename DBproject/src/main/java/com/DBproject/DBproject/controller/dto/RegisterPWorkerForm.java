@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class RegisterPWorkerForm {
-    private int employee_id;
+    private Integer employee_id;
     private String project_id;
     private String e_job;
     @DateTimeFormat(pattern = "yyyy-MM-dd")

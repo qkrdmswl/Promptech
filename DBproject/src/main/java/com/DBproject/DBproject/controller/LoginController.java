@@ -9,12 +9,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StopWatch;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 
 @Slf4j
 @Controller
@@ -31,8 +33,11 @@ public class LoginController {
         }
         try {
 
-
+            StopWatch stopwatch = new StopWatch();
+            stopwatch.start();
         Employee loginMember = loginService.findOne(loginform.getLog_id(),loginform.getPassword()).get(0);
+            stopwatch.stop();
+            log.info(stopwatch.prettyPrint()+"초가 걸렸습니다");
 
 
         if(loginService.login(loginform.getLog_id(),loginform.getPassword())=="BASIC"){
@@ -40,6 +45,7 @@ public class LoginController {
             session.setAttribute(SessionConstants.LoginMember, loginMember);
             return "redirect:/log/employee";
         }
+
 
         else if(loginService.login(loginform.getLog_id(),loginform.getPassword())=="CEO"){
             HttpSession session = request.getSession();
@@ -54,6 +60,7 @@ public class LoginController {
 
             return "redirect:/log/adminPage";
         }
+
 
         }catch (NullPointerException e){
             model.addAttribute("error", new NullPointerException("아이디 또는 비밀번호가 틀렸습니다."));

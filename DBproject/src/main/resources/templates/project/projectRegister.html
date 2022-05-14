@@ -34,19 +34,19 @@
 
         <div class = "form-group">
             <label>예산</label>
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{cost}" placeholder="프로젝트 예산을 입력하세요" th:class="${#fields.hasErrors('cost')}? 'form-control fieldError' : 'form-control'">
+            <input  class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{cost}" placeholder="프로젝트 예산을 입력하세요" th:class="${#fields.hasErrors('cost')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('cost')}"th:errors="*{cost}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 시작 일자</label>
-            <input  type="text" th:field="*{start_date}" class="form-control" placeholder="(yyyy-MM-dd) 프로젝트 시작 날짜를 입력하세요" th:class="${#fields.hasErrors('start_date')}? 'form-control fieldError' : 'form-control'">
+            <input class="form-control mr-sm-2" type="date" name="userBirthday" th:field="*{start_date}"  placeholder="(yyyy-MM-dd) 프로젝트 시작 날짜를 입력하세요" th:class="${#fields.hasErrors('start_date')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('start_date')}"th:errors="*{start_date}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 종료 일자</label>
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{end_date}" placeholder="(yyyy-MM-dd) 프로젝트 종료 날짜를 입력하세요" th:class="${#fields.hasErrors('end_date')}? 'form-control fieldError' : 'form-control'">
+            <input class="form-control mr-sm-2" type="date" name="userBirthday" aria-label="Search" th:field="*{end_date}" placeholder="(yyyy-MM-dd) 프로젝트 종료 날짜를 입력하세요" th:class="${#fields.hasErrors('end_date')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('end_date')}"th:errors="*{end_date}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
