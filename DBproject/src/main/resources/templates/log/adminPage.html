@@ -13,7 +13,7 @@
 </head>
 <body>
     <h2 class="text-center" th:text="|환영합니다 ${admin.employee_name}님|">로그인 사용자 이름</h2><br>
-    <div style="display:inline-block; height : 400px; width : 400px; overflow : scroll;" id="table1" >
+    <div style="display:inline-block; height : 450px; width : 700px; overflow : scroll;" id="table1" >
         <table class="table table-hover">
             <caption class="text-primary">프로젝트 목록</caption>
             <thead>
@@ -21,8 +21,8 @@
                     <th scope="col">프로젝트 아이디</th>
                     <th scope="col">프로젝트 이름</th>
                     <th scope="col">고객사</th>
-                    <th scope="col">프로젝트 시작 기간</th>
-                    <th scope="col">프로젝트 종료 기간</th>
+                    <th scope="col">시작 기간</th>
+                    <th scope="col">종료 기간</th>
                     <th scope="col">예산</th>
                 </tr>
             </thead>
@@ -40,7 +40,7 @@
         <br>
     </div>
 
-    <div style="display:inline-block; height : 400px; width : 400px; overflow : scroll;" id="table2" >
+    <div style="display:inline-block; height : 450px; width : 700px; overflow : scroll;" id="table2" >
         <table class="table table-hover">
             <caption class="text-primary">프로젝트 진행 상황</caption>
             <thead>
