@@ -20,12 +20,12 @@ import java.time.LocalDate;
 public class Works_for {
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()//fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id" )
     private Employee employee;
 
     @Id
-    @ManyToOne()//fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="project_id" )
     private Project project;
     @Column(length = 50,nullable = false)
@@ -36,4 +36,8 @@ public class Works_for {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate e_end_d;
 
+    /*public void setEmployee(Employee employee){
+        this.employee = employee ;
+        employee.getWorks().add(this);
+    }*/
 }

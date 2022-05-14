@@ -1,5 +1,6 @@
 package com.DBproject.DBproject.Repository;
 
+import com.DBproject.DBproject.controller.dto.SumCostDto;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Project;
 import com.DBproject.DBproject.domain.Works_for;
@@ -44,7 +45,7 @@ public class ProjectRepository {
     }
 
     public List<Project> findAll(){
-        return em.createQuery("select p from Project p ", Project.class)
+        return em.createQuery("select p from Project p order by p.end_date desc ", Project.class)
                 .getResultList();
     }
 
@@ -60,6 +61,11 @@ public class ProjectRepository {
                 .setParameter("id", id)
                 .getResultList();
 
+    }
+
+    public List<SumCostDto> sumProjectCost(){
+        return em.createQuery("select  new com.DBproject.DBproject.controller.dto.SumCostDto( sum (p.project_cost)) from Project p where p.end_date >= CURRENT_DATE",SumCostDto.class)
+                .getResultList();
     }
 
 

@@ -5,6 +5,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
@@ -35,9 +38,9 @@ public class Employee {
     @JoinTable(name = "Employee_log",
                joincolejfewkjfnweopdijpowqkdwqdqwwd)*/
 
-    /*@OneToMany(mappedBy = "employee_works")
-    List<Works_for> works = new ArrayList<Works_for>();
-    @OneToMany(mappedBy = "employee_skill")
+   /* @OneToMany(mappedBy = "employee")
+    List<Works_for> works = new ArrayList<Works_for>();*/
+    /*@OneToMany(mappedBy = "employee_skill")
     List<Employee_skill> skill = new ArrayList<Employee_skill>();
     @OneToMany(mappedBy = "employee_experience")
     List<Employee_career> experience = new ArrayList<Employee_career>();*/
