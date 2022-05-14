@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
@@ -55,7 +56,6 @@ public class ProjectRepository {
                 .setParameter("p_id",projectId)
                 .getResultList();
     }
-
     public List<Works_for> findProjectById(String id) {
         return em.createQuery("select w from Works_for  w where w.project.project_id=:id", Works_for.class)
                 .setParameter("id", id)

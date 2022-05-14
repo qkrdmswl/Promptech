@@ -4,6 +4,7 @@ import com.DBproject.DBproject.controller.dto.SumCostDto;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Project;
 import com.DBproject.DBproject.domain.Works_for;
+import com.DBproject.DBproject.service.ProjectInputService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.jni.Local;
 import org.hibernate.jdbc.Work;
@@ -26,6 +27,7 @@ public class CeoController {
     // 조회는 service 거치지 않고 바로 repository 로 접근해서 출력만 해주는 형식이 깔끔합니다
     private final EmployeeRepository employeeRepository;
     private final ProjectRepository projectRepository;
+    private  final com.DBproject.DBproject.Service.ProjectService projectService;
 
     // ceo 전용 마이페이지
     @GetMapping("/log/ceo")

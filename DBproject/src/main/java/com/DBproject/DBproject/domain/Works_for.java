@@ -25,7 +25,7 @@ public class Works_for {
     private Employee employee;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()//fetch = FetchType.LAZY)
     @JoinColumn(name ="project_id" )
     private Project project;
     @Column(length = 50,nullable = false)
