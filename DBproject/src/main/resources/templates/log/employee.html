@@ -42,11 +42,12 @@
         <td th:text="*{worksFor.e_start_d}"></td>
         <td th:text="*{worksFor.e_end_d}"></td>
         <td th:text="*{worksFor.project.end_date}"></td>
+        <td th:if="*{worksFor.e_start_d > nowdate}">진행예정</td>
         <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date < nowdate}">종료</td>
         <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date >= nowdate}">진행중</td>
         <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date >= nowdate and worksFor.e_end_d >= nowdate}">진행중</td>
         <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date <= nowdate and worksFor.e_end_d < nowdate}">종료</td>
-        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date >= nowdate and worksFor.e_end_d < nowdate}">종료</td>
+        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date > nowdate and worksFor.e_end_d < nowdate}">종료</td>
     </tr>
     </tbody>
 </table>

@@ -15,7 +15,7 @@ import java.util.List;
 @Table(indexes = @Index(name="idx_logid_password", columnList = "log_id, password",unique = true))
 public class Employee {
     @Id @GeneratedValue(strategy =GenerationType.IDENTITY)
-    private Integer employee_id;
+    private int employee_id;
     @Column(unique = true ,length=25,nullable = false)
     private String employee_number;
     @Column(length = 50,nullable = false)

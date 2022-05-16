@@ -15,7 +15,7 @@ public class ProjectForm {
     @NotEmpty(message = "프로젝트 이름 입력은 필수입니다.")
     private String project_name;
 
-    @NotEmpty(message = "발주처 입력은 필수입니다.")
+    @NotEmpty(message = "고객사 입력은 필수입니다.")
     private String ordering_company;
 
     @NotEmpty(message = "프로젝트 시작일짜 입력은 필수입니다.")

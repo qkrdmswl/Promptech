@@ -6,10 +6,13 @@ import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Project;
 import com.DBproject.DBproject.domain.Works_for;
 import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
+import com.DBproject.DBproject.exception.DateException;
 import com.DBproject.DBproject.exception.NoIdException;
+import com.DBproject.DBproject.exception.WorksMorethan3Exception;
 import com.DBproject.DBproject.service.ProjectInputService;
-import com.DBproject.DBproject.Service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.orm.jpa.JpaSystemException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,12 +25,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class AdminController {
 
     private final ProjectService projectService;
     private final ProjectInputService projectInputService;
+    private  final com.DBproject.DBproject.Service.EmployeeService employeeService;
 
     // admin 전용 마이페이지
     @GetMapping("/log/adminPage")
@@ -47,7 +52,7 @@ public class AdminController {
     }
     // 프로젝트 등록
     @PostMapping("/project/projectRegister")
-    public String createProject(@Valid ProjectForm form, BindingResult result, Model model) {
+    public String createProject(@Valid  ProjectForm form, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/project/projectRegister";
         }
@@ -150,21 +155,53 @@ public class AdminController {
 
 
     // 프로젝트 투입 등록폼 작성 -> 저장
-    @PostMapping("/input/project")
-    public String InputProject(RegisterPWorkerForm rpwForm, Model model) {
-        // 폼으로부터의 내용 Works-for 객체에 setting
-        Works_for works_for = worksForSetting(rpwForm);
-        // 저장한 내용 DB 반영 -> .inputProjectSave->
-        projectInputService.inputProjectSave(works_for);
-        return "redirect:/log/adminPage";
+    @PostMapping("/input/projectForm")
+    public String InputProject(@Valid @ModelAttribute("inputProject") RegisterPWorkerForm rpwForm,BindingResult result ,Model model) {
+        if(result.hasErrors()){
+            return "/works/projectStartRegister";
+        }
+        try {
+            //해당 직원이 있는지 확인하기 위함
+            Employee findOneEmployee = employeeService.findEmployee(Integer.valueOf(rpwForm.getEmployee_id()));
+            //해당 프로젝트가 있는지 확인하기 위함
+            List<Project> findOneProject = projectService.findOne(rpwForm.getProject_id());
+            List<Works_for> projectNum =  projectInputService.findPEmployeeByIdList(Integer.valueOf(rpwForm.getEmployee_id()));
+            //해당직원이 3개의 프로젝트에 참여중일 때
+            if(projectNum.size()>=3){
+                throw new WorksMorethan3Exception("해당 직원은 이미 3개의 프로젝트에 참여중입니다.");
+            }
+            else if (findOneProject.isEmpty() || findOneEmployee == null){
+                throw new NoIdException("해당 프로젝트 또는 해당 프로젝트 인원이 존재하지 않습니다.");
+            }
+
+            // 폼으로부터의 내용 Works-for 객체에 setting
+            Works_for works_for = worksForSetting(rpwForm);
+            if(works_for.getE_start_d().isAfter(works_for.getProject().getEnd_date())  ){
+                throw new DateException("프로젝트 종료일자 보다 직원의 프로젝트 참여 일자가 큽니다.");
+            }
+            // 저장한 내용 DB 반영 -> .inputProjectSave->
+            projectInputService.inputProjectSave(works_for);
+            return "redirect:/log/adminPage";
+        }catch (WorksMorethan3Exception e){
+            model.addAttribute("error",new WorksMorethan3Exception(e.getMessage()));
+            return "/works/projectStartRegister";
+        }
+        catch (NoIdException v){
+            model.addAttribute("error2",new NoIdException(v.getMessage()));
+            return "/works/projectStartRegister";
+        }catch (DateException d){
+            model.addAttribute("error3",new DateException(d.getMessage()));
+            return "/works/projectStartRegister";
+        }
+
     }
 
     public Works_for worksForSetting(RegisterPWorkerForm rpwForm) {
         Works_for works_for = new Works_for();
         works_for.setProject(projectInputService.findProjectById(rpwForm.getProject_id()));
-        works_for.setEmployee(projectInputService.findPEmployeeById(rpwForm.getEmployee_id()));
-        works_for.setE_end_d(rpwForm.getE_end_d());
-        works_for.setE_start_d(rpwForm.getE_start_d());
+        works_for.setEmployee(projectInputService.findPEmployeeById(Integer.valueOf(rpwForm.getEmployee_id())));
+        works_for.setE_end_d((rpwForm.getE_end_d()));
+        works_for.setE_start_d(LocalDate.parse(rpwForm.getE_start_d(),DateTimeFormatter.ISO_DATE));
         works_for.setE_job(rpwForm.getE_job());
         return works_for;
     }
@@ -178,7 +215,7 @@ public class AdminController {
 
     // 수정폼 검색
     @GetMapping("/input/project/editForm")
-    public String SearchInputProject(@Valid @ModelAttribute("findForm")FindPWorkerForm findPWorkerForm,Model model,BindingResult result) {
+    public String SearchInputProject(@Valid @ModelAttribute("findForm")FindPWorkerForm findPWorkerForm,BindingResult result,Model model) {
         if (result.hasErrors()) {
             return "/works/editInputProject";
         }

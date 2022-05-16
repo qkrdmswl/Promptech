@@ -51,6 +51,11 @@ public class ProjectInputService {
         return employeeRepository.findOne(employeeId);
     }
 
+    //works_for id 가지고 사원찾기 list로 받아서 그 사원이 몇개의 프로젝트에 투입되어있는지 확인하기 위함.
+    public List<Works_for> findPEmployeeByIdList(int employeeId){
+        return employeeRepository.findByEmId(employeeId);
+    }
+
     // 프로젝트 투입 저장
     @Transactional
     public void inputProjectSave(Works_for wf) {
