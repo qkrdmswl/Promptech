@@ -25,17 +25,16 @@ public class LoginController {
     private final LoginService loginService;
     private final EmployeeService employeeService;
 
-    @PostMapping( "/log/new")
+    @PostMapping( "/home")
     public String create(@Valid LoginForm loginform, BindingResult result, HttpServletRequest request, Model model)
     {
         if (result.hasErrors()) { // bindingResult: 에러가 나면 다시 로그인 창으로 돌려준다.
             return "home";
         }
         try {
-
             StopWatch stopwatch = new StopWatch();
             stopwatch.start();
-        Employee loginMember = loginService.findOne(loginform.getLog_id(),loginform.getPassword()).get(0);
+            Employee loginMember = loginService.findOne(loginform.getLog_id(),loginform.getPassword()).get(0);
             stopwatch.stop();
             log.info(stopwatch.prettyPrint()+"초가 걸렸습니다");
 

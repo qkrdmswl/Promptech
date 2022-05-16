@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Employee_career {
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id")  // ManyToOne은 항상 연관관계의 주인
     private Employee employee;
     @Id @Column(length = 50,nullable = false)
     private String experience_name;

@@ -35,16 +35,6 @@ public class Employee {
     @Column(length = 50 , nullable =false)
     private String email;
 
-    /*@OneToOne
-    @JoinTable(name = "Employee_log",
-               joincolejfewkjfnweopdijpowqkdwqdqwwd)*/
-
-   /* @OneToMany(mappedBy = "employee")
-    List<Works_for> works = new ArrayList<Works_for>();*/
-    /*@OneToMany(mappedBy = "employee_skill")
-    List<Employee_skill> skill = new ArrayList<Employee_skill>();
-    @OneToMany(mappedBy = "employee_experience")
-    List<Employee_career> experience = new ArrayList<Employee_career>();*/
 
 
 }
