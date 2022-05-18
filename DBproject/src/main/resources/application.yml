@@ -4,12 +4,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/prompt?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: han@1782
+    password: dlcksgmlwjddlstnr
 
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
-    open-in-view: false
+    open-in-view: true
     show-sql: true
     hibernate:
       format_sql: true
