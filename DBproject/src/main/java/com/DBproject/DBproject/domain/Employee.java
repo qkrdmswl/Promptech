@@ -37,7 +37,6 @@ public class Employee {
     @Column(length = 50,nullable = false)
     private String e_skill;
     @Column(length = 50,nullable = false)
-    @Id @Column(length = 50,nullable = false)
     private String experience_name;
 
 
