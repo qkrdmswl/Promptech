@@ -75,7 +75,7 @@ public class LoginController {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
-            log.info("제발 가라");//세션 날림
+            log.info("로그아웃, 세션 만료");//세션 날림
         }
 
         return "redirect:/";

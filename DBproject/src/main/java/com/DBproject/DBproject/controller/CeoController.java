@@ -49,9 +49,11 @@ public class CeoController {
 
     // 직원 조회
     @PostMapping("log/ceo/employeeInfo")
-    public String getEmployeeInfoById(@RequestParam("employeeId") int employeeId , Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
+    public String getEmployeeInfoById(@RequestParam("employee_name") String employeeName , Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
 
-        Employee findEmployee =employeeRepository.findOne(employeeId);
+//        Employee findEmployee =employeeRepository.findOne(employeeId);
+//        model.addAttribute("emInfo",findEmployee);
+        List<Employee> findEmployee = employeeRepository.findByEmployeeName(employeeName);
         model.addAttribute("emInfo",findEmployee);
 
         //get 매핑에서 받은 모델을 똑같이 적용해 주어야 데이터가 뜬다.
@@ -67,11 +69,11 @@ public class CeoController {
 
     // 프로젝트 조회
     @PostMapping("log/ceo/projectInfo")
-    public String getProejctInfoById(@RequestParam("projectId") String projectId,Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
-        List<Works_for> findProject=projectRepository.findProjectById(projectId);
+    public String getProejctInfoById(@RequestParam("project_name") String project_name,Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
+        List<Works_for> findProject=projectRepository.findProjectByName(project_name);
         LocalDate currentDate= LocalDate.now();
         boolean visibility =true;
-        List<Project> projects=projectRepository.findById(projectId);
+        List<Project> projects=projectRepository.findProjectListByName(project_name);
         model.addAttribute("projects",projects);
         model.addAttribute("pjInfo",findProject);
         model.addAttribute("currentDate",currentDate);

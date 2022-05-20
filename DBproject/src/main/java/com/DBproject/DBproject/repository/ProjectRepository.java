@@ -1,9 +1,11 @@
 package com.DBproject.DBproject.Repository;
 
 import com.DBproject.DBproject.controller.dto.SumCostDto;
+import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Project;
 import com.DBproject.DBproject.domain.Works_for;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.jdbc.Work;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -26,11 +28,26 @@ public class ProjectRepository {
         em.merge(inputProject);
     }
 
+    public List<Project> findProjectListByName(String project_name) {
+        return em.createQuery("select p from Project p where p.project_name = :p_name", Project.class)
+                .setParameter("p_name", project_name)
+                .getResultList();
+    }
+
     public List<Project> findById(String id){
         return em.createQuery("select p from Project p where p.project_id = :p_id", Project.class)
                 .setParameter("p_id",id)
                 .getResultList();
     }
+
+
+
+        public List<Works_for> findProjectByName(String project_name){
+            List<Works_for> jpql=em.createQuery("select w from Works_for w where w.project.project_name like :name",Works_for.class)
+                    .setParameter("name","%"+ project_name+"%")
+                    .getResultList();
+            return jpql;
+        }
 
     public Project findByProjcetId(String id){
         return em.find(Project.class ,id);
@@ -54,6 +71,7 @@ public class ProjectRepository {
                 .setParameter("p_id",projectId)
                 .getResultList();
     }
+
     public List<Works_for> findProjectById(String id) {
         return em.createQuery("select w from Works_for  w where w.project.project_id=:id", Works_for.class)
                 .setParameter("id", id)

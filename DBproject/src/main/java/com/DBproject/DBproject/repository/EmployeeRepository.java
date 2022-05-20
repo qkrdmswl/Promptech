@@ -3,9 +3,7 @@ package com.DBproject.DBproject.Repository;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.domain.Works_for;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
@@ -21,13 +19,21 @@ public class EmployeeRepository {
         em.persist(employee);
     }
 
-
     public Employee findOne(int id) {
         return em.find(Employee.class, id);
     }
+
     public List<Employee> findAll(){
         return em.createQuery("select e from Employee e",Employee.class)
                 .getResultList();
+    }
+
+    public List<Employee> findByEmployeeName(String employee_name){
+         List<Employee> jpql=em.createQuery("select e from Employee e where e.employee_name like :name"  , Employee.class)
+                .setParameter("name","%"+employee_name+"%")
+                .getResultList();
+         return jpql;
+
     }
 
     public List<Employee> findByNum(String num){

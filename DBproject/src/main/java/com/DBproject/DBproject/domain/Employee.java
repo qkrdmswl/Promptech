@@ -34,7 +34,8 @@ public class Employee {
     private String phoneNum;
     @Column(length = 50 , nullable =false)
     private String email;
-
+    @Column(length = 50,nullable = false)
+    private String e_skill;
 
 
 }

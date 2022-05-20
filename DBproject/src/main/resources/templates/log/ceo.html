@@ -38,7 +38,7 @@
             <div class="tab-pane in active" id="tabmenu_01">
                 <nav class="navbar navbar-light bg-light">
                     <form class="form-inline" form action="/log/ceo/projectInfo" method="post">
-                        <input class= input-type="text" name="projectId" placeholder="프로젝트 검색" aria-label="Search">
+                        <input class= input-type="text" name="project_name" placeholder="프로젝트 이름 검색" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
                     </form>
                     <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/log/ceo'">프로젝트 목록보기</button>
@@ -70,15 +70,15 @@
                         <td th:if="*{project.end_date >= currentDate}">진행중</td>
                     </tr>
                     <!--프로젝트 조회된 결과 -->
-                    <tr th:each="projects : ${projects}">
-                        <td th:text="*{projects.project_id}"></td>
-                        <td th:text="*{projects.project_name}"></td>
-                        <td th:text="*{projects.ordering_company}"></td>
-                        <td th:text="*{projects.project_cost}"></td>
-                        <td th:text="*{projects.start_date}"></td>
-                        <td th:text="*{projects.end_date}"></td>
-                        <td th:if="*{projects.end_date < currentDate}">종료</td>
-                        <td th:if="*{projects.end_date >= currentDate}">진행중</td>
+                    <tr th:each="pj : ${projects}">
+                        <td th:text="*{pj.project_id}"></td>
+                        <td th:text="*{pj.project_name}"></td>
+                        <td th:text="*{pj.ordering_company}"></td>
+                        <td th:text="*{pj.project_cost}"></td>
+                        <td th:text="*{pj.start_date}"></td>
+                        <td th:text="*{pj.end_date}"></td>
+                        <td th:if="*{pj.end_date < currentDate}">종료</td>
+                        <td th:if="*{pj.end_date >= currentDate}">진행중</td>
                     </tr>
                     </tbody>
                 </table>
@@ -123,7 +123,7 @@
             <div class="tab-pane" th:id="tabmenu_02" >
                 <nav class="navbar navbar-light bg-light">
                     <form class="form-inline" form action="/log/ceo/employeeInfo" method="post">
-                        <input type="text" name="employeeId" placeholder="직원 검색" aria-label="Search">
+                        <input type="text" name="employee_name" placeholder="직원 이름 검색" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
                     </form>
                     <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/log/ceo'">직원목록 보기</button>
@@ -157,7 +157,7 @@
             <div class="tab-pane" th:id="tabmenu_02" >
                 <nav class="navbar navbar-light bg-light">
                     <form class="form-inline" form action="/log/ceo/employeeInfo" method="post">
-                        <input type="text" name="employeeId" placeholder="직원 검색" aria-label="Search">
+                        <input type="text" name="employee_name" placeholder="직원이름 검색" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
                     </form>
                     <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/log/ceo'">새로고침</button>

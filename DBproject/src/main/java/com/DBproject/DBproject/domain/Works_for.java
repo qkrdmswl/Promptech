@@ -23,11 +23,11 @@ public class Works_for {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id" )
     private Employee employee;
-
     @Id
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="project_id" )
     private Project project;
+
     @Column(length = 50,nullable = false)
     private String e_job;
     @Column(nullable = false)
