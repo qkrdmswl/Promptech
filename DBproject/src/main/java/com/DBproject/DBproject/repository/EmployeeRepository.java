@@ -54,7 +54,7 @@ public class EmployeeRepository {
     }
 
     public List<Works_for> findByEmId(int id){ // 현재 진행중인 프로젝트를 모두 가져오기 위함
-        return em.createQuery("select w from Works_for  w where (w.employee.employee_id=:id) and (w.project.end_date >= current_date ) and (w.e_end_d >= current_date or w.e_end_d is null) ",Works_for.class)
+        return em.createQuery("select w from Works_for  w where (w.employee.employee_id=:id) and (w.project.end_date >= current_date ) and (w.e_start_d <= current_date ) and(w.e_end_d >= current_date or w.e_end_d is null) ",Works_for.class)
                 .setParameter("id",id)
                 .getResultList();
     }

@@ -1,6 +1,8 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
     .fieldError {
         border-color: #bd2130;
@@ -8,72 +10,74 @@
     form{
         display: inline;
     }
+    .btn_set{
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+    }
 
+    .btn btn-primary {
+        background-color: #fff3cd;
+        border: #0c63e4;
+    }
+    .btn btn-primary :hover {
+        background-color: #0c63e4;
+
+    }
 </style>
 <body>
-<h1>직원</h1>
-<h2 class="mb-3" th:text="|환영합니다  ${employee.employee_name}님  |">로그인 사용자 이름 </h2>
-</br>
+<div class="container">
+    <h2 class="mb-3" th:text="|환영합니다  ${employee.employee_name}님  |">로그인 사용자 이름 </h2>
+    </br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">참여한 프로젝트 아이디</th>
 
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>참여한 프로젝트 아이디</th>
+            <th scope="col">참여한 프로젝트 이름</th>
 
-        <th>참여한 프로젝트 이름</th>
+            <th scope="col">직무</th>
 
-        <th>직무</th>
+            <th scope="col">참여날짜</th>
 
-        <th>참여날짜</th>
+            <th scope="col">프로젝트에서 나온날짜</th>
 
-        <th>프로젝트에서 나온날짜</th>
+            <th scope="col">프로젝트 종료날짜</th>
 
-        <th>프로젝트 종료날짜</th>
-
-        <th>진행상태</th>
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="worksFor : ${worksFor}">
-        <td th:text="*{worksFor.project.project_id}"></td>
-        <td th:text="*{worksFor.project.project_name}"></td>
-        <td th:text="*{worksFor.e_job}"></td>
-        <td th:text="*{worksFor.e_start_d}"></td>
-        <td th:text="*{worksFor.e_end_d}"></td>
-        <td th:text="*{worksFor.project.end_date}"></td>
-        <td th:if="*{worksFor.e_start_d > nowdate}">진행예정</td>
-        <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date < nowdate}">종료</td>
-        <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date >= nowdate}">진행중</td>
-        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date >= nowdate and worksFor.e_end_d >= nowdate}">진행중</td>
-        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date <= nowdate and worksFor.e_end_d < nowdate}">종료</td>
-        <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date > nowdate and worksFor.e_end_d < nowdate}">종료</td>
-    </tr>
-    </tbody>
-</table>
-</br>
-<div class="row">
-    <div class="col">
+            <th scope="col">진행상태</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="worksFor : ${worksFor}">
+            <td th:text="*{worksFor.project.project_id}"></td>
+            <td th:text="*{worksFor.project.project_name}"></td>
+            <td th:text="*{worksFor.e_job}"></td>
+            <td th:text="*{worksFor.e_start_d}"></td>
+            <td th:text="*{worksFor.e_end_d}"></td>
+            <td th:text="*{worksFor.project.end_date}"></td>
+            <td th:if="*{worksFor.e_start_d > nowdate}">진행예정</td>
+            <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date < nowdate}">종료</td>
+            <td th:if="*{worksFor.e_end_d == null and worksFor.project.end_date >= nowdate}">진행중</td>
+            <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date >= nowdate and worksFor.e_end_d >= nowdate and worksFor.e_start_d <= nowdate}">진행중</td>
+            <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date <= nowdate and worksFor.e_end_d < nowdate}">종료</td>
+            <td th:if="*{worksFor.e_end_d != null and worksFor.project.end_date > nowdate and worksFor.e_end_d < nowdate}">종료</td>
+        </tr>
+        </tbody>
+    </table>
+    </br>
+    <div class="btn_set">
         <form th:action="@{/edit/employee}" method="get">
-            <button class="w-100 btn btn-dark btn-lg"  type="submit">
+            <button class="btn btn-primary"  type="submit">
                 정보 수정하기
             </button>
         </form>
-    </div>
-</div>
-
-<br>
-<br>
-
-<div class="row">
-    <div class="col">
         <form th:action="@{/logout}" method="post">
-            <button class="w-100 btn btn-dark btn-lg"  type="submit">
+            <button class="btn btn-primary m-0" style="float: right;" type="submit">
                 로그아웃
             </button>
         </form>
     </div>
+    <div th:replace="fragments/footer :: footer" />
 </div>
-
 </body>
 </html>
