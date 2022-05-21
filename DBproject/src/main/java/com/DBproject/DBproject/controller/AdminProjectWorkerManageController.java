@@ -69,6 +69,10 @@ public class AdminProjectWorkerManageController {
             if(works_for.getE_start_d().isAfter(works_for.getProject().getEnd_date())  ){
                 throw new DateException("프로젝트 종료일자 보다 직원의 프로젝트 참여 일자가 큽니다.");
             }
+
+            if(works_for.getE_job().equals("NULL")){
+                throw new IllegalStateException("직책을 제대로 입력해주세요. ");
+            }
             // 저장한 내용 DB 반영 -> .inputProjectSave->
             projectInputService.inputProjectSave(works_for);
             return "redirect:/log/adminPage";
@@ -81,6 +85,9 @@ public class AdminProjectWorkerManageController {
             return "/works/projectStartRegister";
         }catch (DateException d){
             model.addAttribute("error3",new DateException(d.getMessage()));
+            return "/works/projectStartRegister";
+        }catch (IllegalStateException e) {
+            model.addAttribute("error4", new IllegalStateException(e.getMessage()));
             return "/works/projectStartRegister";
         }
     }
@@ -134,13 +141,27 @@ public class AdminProjectWorkerManageController {
             model.addAttribute("error", new NoIdException(e.getMessage()));
             return "/works/editInputProject";
         }
-
     }
     // 프로젝트 투입 인원 및 프로젝트 검색후 -> 수정
     @PostMapping("/input/project/edit")
     public String EditInputProject(RegisterPWorkerForm rpwForm,Model model){
+        try {
+            if (rpwForm.getE_job().equals("NULL")) {
+                throw new IllegalStateException("직책을 제대로 입력해주세요. ");
+            }
+        } catch (IllegalStateException e) {
+            FindPWorkerForm a = new FindPWorkerForm();
+            a.setProject_id(rpwForm.getProject_id());
+            a.setEmployee_id(rpwForm.getEmployee_id());
 
-        Works_for editInputProject =worksForSetting(rpwForm);
+            model.addAttribute("error5", new IllegalStateException(e.getMessage()));
+            model.addAttribute("findForm", a);
+            model.addAttribute("projectEditForm", rpwForm);
+            model.addAttribute("visibility", true);
+            return "/works/editInputProject";
+
+        }
+        Works_for editInputProject = worksForSetting(rpwForm);
         projectInputService.inputProjectSave(editInputProject);
         return "redirect:/log/adminPage";
 

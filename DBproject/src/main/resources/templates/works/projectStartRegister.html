@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-      crossorigin="anonymous">
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 <head>
     <meta charset="UTF-8">
     <title>새로운 Works_for 등록</title>
@@ -11,7 +10,7 @@
 </head>
 <body>
     <h2 class="text-center">
-        새로운 Works_for 등록하기
+        새로운 프로젝트 투입 등록하기
     </h2><br>
     <form action="/input/projectForm" th:object="${inputProject}" method="post" >
         <div class = "form-group">
@@ -27,27 +26,32 @@
         </div><br>
 
         <div class = "form-group">
-            <label>직책</label>
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{e_job}" placeholder="직책을 입력하세요" th:class="${#fields.hasErrors('e_job')}? 'form-control fieldError' : 'form-control'">
-            <p th:if="${#fields.hasErrors('e_job')}"th:errors="*{e_job}" class="mb-3 alert alert-danger">Incorrect date</p>
+            <label>직책</label><br>
+            <select class="form-select" name="positions" id="position" th:field = "*{e_job}" th:value = "*{e_job}">
+                <option value = "NULL">직책을 결정해주세요</option>
+                <option th:value = "PM">PM</option>
+                <option th:value = "|SW ENGINEER|">SW ENGINEER</option>
+                <option th:value = "TESTER">TESTER</option>
+<!--                <p th:if="${#fields.hasErrors('e_job')}"th:errors="*{e_job}" class="mb-3 alert alert-danger">Incorrect date</p>-->
+            </select>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 참여 날짜</label>
-            <input class="form-control mr-sm-2" type="date" name="userBirthday" aria-label="Search" th:field="*{e_start_d}" placeholder="(yyyy-MM-dd) 프로젝트 참여 날짜를 입력하세요" th:class="${#fields.hasErrors('e_start_d')}? 'form-control fieldError' : 'form-control'">
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{e_start_d}" placeholder="(yyyy-MM-dd) 프로젝트 참여 날짜를 입력하세요" th:class="${#fields.hasErrors('e_start_d')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('e_start_d')}"th:errors="*{e_start_d}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 이탈 날짜</label>
-            <input class="form-control mr-sm-2" type="date" name="userBirthday" aria-label="Search" th:field="*{e_end_d}" placeholder="(yyyy-MM-dd) 프로젝트 이탈 날짜를 입력하세요" >
+            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{e_end_d}" placeholder="(yyyy-MM-dd) 프로젝트 이탈 날짜를 입력하세요" >
         </div><br>
 
         <button class="btn btn-primary" style="float: right;" type="submit">프로젝트 투입 등록</button><br>
     </form><br>
 
     <div class="row mb-3">
-        <div class="col-8">
+        <div class="col-12">
             <div th:if="${error}" class="mb-3 alert alert-danger">
                 <stong>해당 직원은 이미 3개의 프로젝트에 참여중입니다. </stong>
 
@@ -57,6 +61,9 @@
             </div>
             <div th:if="${error3}" class="mb-3 alert alert-danger">
                 <stong>프로젝트 종료일자 보다 직원의 프로젝트 참여 일자가 큽니다. </stong>
+            </div>
+            <div th:if="${error4}" class="mb-3 alert alert-danger">
+                <stong>직책을 제대로 골라주세요. </stong>
             </div>
         </div>
     </div>
