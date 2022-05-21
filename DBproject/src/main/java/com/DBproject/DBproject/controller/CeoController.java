@@ -70,14 +70,14 @@ public class CeoController {
     // 프로젝트 조회
     @PostMapping("log/ceo/projectInfo")
     public String getProejctInfoById(@RequestParam("project_name") String project_name,Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
-        List<Works_for> findProject=projectRepository.findProjectByName(project_name);
+        //List<Works_for> findProject=projectRepository.findProjectByName(project_name);
         LocalDate currentDate= LocalDate.now();
-        boolean visibility =true;
+        //boolean visibility =true;
         List<Project> projects=projectRepository.findProjectListByName(project_name);
         model.addAttribute("projects",projects);
-        model.addAttribute("pjInfo",findProject);
+        //model.addAttribute("pjInfo",findProject);
         model.addAttribute("currentDate",currentDate);
-        model.addAttribute("visibility",visibility);
+        //model.addAttribute("visibility",visibility);
         SumCostDto sum = projectRepository.sumProjectCost().get(0);
         model.addAttribute("sum",sum);
 
@@ -88,6 +88,27 @@ public class CeoController {
         model.addAttribute("currentDate",currentDate);
 
         return "log/ceo";
+    }
+
+
+    @GetMapping("worksfor/{projectId}/list")
+    public String worksforList(@PathVariable("projectId")String id, Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
+        List<Works_for> findProject = projectRepository.findProjectById(id);
+        boolean visibility =true;
+        model.addAttribute("visibility",visibility);
+        model.addAttribute("pjInfo",findProject);
+        LocalDate currentDate= LocalDate.now();
+        List<Project> projects=projectRepository.findById(id);
+        model.addAttribute("projects",projects);
+        model.addAttribute("currentDate",currentDate);
+        SumCostDto sum = projectRepository.sumProjectCost().get(0);
+        model.addAttribute("sum",sum);
+        model.addAttribute("ceo",loginMember);
+        //get 매핑에서 받은 모델을 똑같이 적용해 주어야 데이터가 뜬다.
+        List<Employee> employeeList=employeeRepository.findAll();
+        model.addAttribute("emlist",employeeList);
+        model.addAttribute("currentDate",currentDate);
+        return  "log/ceo";
     }
 
 

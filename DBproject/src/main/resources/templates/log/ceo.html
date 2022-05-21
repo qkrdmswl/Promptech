@@ -79,6 +79,9 @@
                         <td th:text="*{pj.end_date}"></td>
                         <td th:if="*{pj.end_date < currentDate}">종료</td>
                         <td th:if="*{pj.end_date >= currentDate}">진행중</td>
+                        <td>
+                            <a href="#" role="button" class="btn btn-outline-success my-2 my-sm-0"  th:href="@{/worksfor/{id}/list (id=${pj.project_id})}">투입사원 확인하기</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -88,6 +91,7 @@
                     <tr>
                         <th scope="col">투입사원 Id</th>
                         <th scope="col">투입사원 이름</th>
+                        <th scope="col">투입사원 직무</th>
                         <th scope="col">투입날짜</th>
                         <th scope="col">종료날짜</th>
                         <th scope="col">투입사원 번호</th>
@@ -100,6 +104,7 @@
                     <tr th:each="searchpj : ${pjInfo}">
                         <td th:text="*{searchpj.employee.employee_id}"></td>
                         <td th:text="*{searchpj.employee.employee_name}"></td>
+                        <td th:text="*{searchpj.e_job}"></td>
                         <td th:text="*{searchpj.e_start_d}"></td>
                         <td th:text="*{searchpj.e_end_d}"></td>
                         <td th:text="*{searchpj.employee.phoneNum}"></td>

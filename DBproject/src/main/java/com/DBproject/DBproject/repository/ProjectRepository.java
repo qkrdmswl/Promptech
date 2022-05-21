@@ -29,9 +29,10 @@ public class ProjectRepository {
     }
 
     public List<Project> findProjectListByName(String project_name) {
-        return em.createQuery("select p from Project p where p.project_name = :p_name", Project.class)
-                .setParameter("p_name", project_name)
+        List<Project> jpql=em.createQuery("select p from Project p where p.project_name like :p_name", Project.class)
+                .setParameter("p_name", "%"+project_name+"%")
                 .getResultList();
+        return  jpql;
     }
 
     public List<Project> findById(String id){
@@ -43,8 +44,8 @@ public class ProjectRepository {
 
 
         public List<Works_for> findProjectByName(String project_name){
-            List<Works_for> jpql=em.createQuery("select w from Works_for w where w.project.project_name like :name",Works_for.class)
-                    .setParameter("name","%"+ project_name+"%")
+            List<Works_for> jpql=em.createQuery("select w from Works_for w where w.project.project_name = :name",Works_for.class)
+                    .setParameter("name", project_name)
                     .getResultList();
             return jpql;
         }
