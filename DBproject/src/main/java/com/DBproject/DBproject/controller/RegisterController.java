@@ -27,6 +27,7 @@ public class RegisterController {
         return "registers/register";
     }
 
+    // 화원가입
     @ExceptionHandler(AlreadyRegisteredIdException.class)
     @PostMapping(value = "/registers/new") // valid: memberform에 @Notempty를 인식.
     public String create(@Valid RegisterForm form, BindingResult result,Model model) {
@@ -42,10 +43,11 @@ public class RegisterController {
         employee.setPassword(form.getPassword());
         employee.setPhoneNum(form.getPhoneNum());
         employee.setEmail(form.getEmail());
+        employee.setEmployee_career(form.getEmployee_career()); // 외부 경력
         employee.setAuthority(Authority.BASIC);
-
-       employeeService.join(employee);
-        return "redirect:/";  // 여기 추가로 코드가 들어가면 좋을듯
+        employee.setEmployee_skill(form.getEmployee_skill());
+        employeeService.join(employee);
+        return "redirect:/";
 
         }catch (AlreadyRegisteredIdException v){
             model.addAttribute("error", new AlreadyRegisteredIdException(v.getMessage()));

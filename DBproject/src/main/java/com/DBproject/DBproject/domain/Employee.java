@@ -22,7 +22,6 @@ public class Employee {
     private String employee_name;
     @Column(length = 50,nullable = false)
     private String employee_school;
-
     @Column(length = 25,nullable = false)
     @Enumerated(EnumType.STRING)
     private Authority authority;
@@ -34,10 +33,10 @@ public class Employee {
     private String phoneNum;
     @Column(length = 50 , nullable =false)
     private String email;
-    @Column(length = 50,nullable = false)
-    private String e_skill;
-    @Column(length = 50,nullable = false)
-    private String experience_name;
+    @Column(length = 80)
+    private String employee_skill;
+    @Column(length = 80)
+    private String employee_career;
 
 
 

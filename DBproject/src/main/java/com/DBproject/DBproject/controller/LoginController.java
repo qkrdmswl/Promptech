@@ -77,7 +77,6 @@ public class LoginController {
             session.invalidate();
             log.info("로그아웃, 세션 만료");//세션 날림
         }
-
         return "redirect:/";
     }
 

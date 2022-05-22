@@ -46,6 +46,8 @@ public class EmployeeService {
         foundEmployee.setEmployee_school(loginEmployee.getEmployee_school());
         foundEmployee.setPhoneNum(loginEmployee.getPhoneNum());
         foundEmployee.setEmail(loginEmployee.getEmail());
+        foundEmployee.setEmployee_career(loginEmployee.getEmployee_career());
+        foundEmployee.setEmployee_skill(loginEmployee.getEmployee_skill());
     }
 
 

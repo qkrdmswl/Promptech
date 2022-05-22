@@ -11,5 +11,5 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class skill implements Serializable {
     private int employee;
-    private String e_skill;
+    private String employee_skill;
 }

@@ -135,7 +135,7 @@ public class AdminProjectWorkerManageController {
 
             model.addAttribute("projectEditForm", editPWorkerForm);
             model.addAttribute("visibility", visible);
-//            model.addAttribute("findPWorker", new RegisterPWorkerForm());
+
             return "/works/editInputProject";
         } catch (NoIdException e) {
             model.addAttribute("error", new NoIdException(e.getMessage()));
@@ -147,7 +147,7 @@ public class AdminProjectWorkerManageController {
     public String EditInputProject(RegisterPWorkerForm rpwForm,Model model){
         try {
             if (rpwForm.getE_job().equals("NULL")) {
-                throw new IllegalStateException("직책을 제대로 입력해주세요. ");
+                throw new IllegalStateException(" 직무를 제대로 입력해주세요. ");
             }
         } catch (IllegalStateException e) {
             FindPWorkerForm a = new FindPWorkerForm();

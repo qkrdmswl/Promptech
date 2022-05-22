@@ -54,6 +54,8 @@ public class EmployeeController {
         editForm.setEmployee_school(loginEmployee.getEmployee_school());
         editForm.setPhoneNum(loginEmployee.getPhoneNum());
         editForm.setEmail(loginEmployee.getEmail());
+        editForm.setEmployee_skill(loginEmployee.getEmployee_skill());
+        editForm.setEmployee_career(loginEmployee.getEmployee_career());
         return editForm;
     }
 
@@ -75,6 +77,8 @@ public class EmployeeController {
         loginEmployee.setEmployee_school(form.getEmployee_school());
         loginEmployee.setPhoneNum(form.getPhoneNum());
         loginEmployee.setEmail(form.getEmail());
+        loginEmployee.setEmployee_skill(form.getEmployee_skill());
+        loginEmployee.setEmployee_career(form.getEmployee_career());
     }
 
 }
