@@ -124,9 +124,9 @@ public class AdminProjectWorkerManageController {
         }
         try {
             boolean visible = true;
-            if(findPWorkerForm.getEmployee_id().getClass().getName()!="Integer"){
-                throw  new NoIdException("type error");
-            }
+            //if(Integer.valueOf(findPWorkerForm.getEmployee_id()).getClass().getName()!="Integer"){
+              //  throw  new NoIdException("type error");
+            //}
             List<Works_for> prem = projectInputService.findPrEmById(Integer.valueOf(findPWorkerForm.getEmployee_id()),findPWorkerForm.getProject_id());
             // 둘 중 하나라도 works-for 엔티티에 없을때
             if (prem.isEmpty()) {
@@ -147,6 +147,9 @@ public class AdminProjectWorkerManageController {
             return "/works/editInputProject";
         } catch (NoIdException e) {
             model.addAttribute("error", new NoIdException(e.getMessage()));
+            return "/works/editInputProject";
+        }catch (NumberFormatException e){
+            model.addAttribute("error", new NumberFormatException(e.getMessage()));
             return "/works/editInputProject";
         }
     }
