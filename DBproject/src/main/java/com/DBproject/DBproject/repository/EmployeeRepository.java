@@ -24,7 +24,7 @@ public class EmployeeRepository {
     }
 
     public List<Employee> findAll(){
-        return em.createQuery("select e from Employee e",Employee.class)
+        return em.createQuery("select e from Employee e order by e.employee_school desc",Employee.class)
                 .getResultList();
     }
 
@@ -48,7 +48,7 @@ public class EmployeeRepository {
     }
 
     public List<Works_for> findById(String id){
-        return em.createQuery("select w from Works_for  w where w.employee.log_id=:log_id",Works_for.class)
+        return em.createQuery("select w from Works_for  w where w.employee.log_id=:log_id order by w.project.end_date desc ",Works_for.class)
                 .setParameter("log_id",id)
                 .getResultList();
     }

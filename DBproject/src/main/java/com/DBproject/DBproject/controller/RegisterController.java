@@ -5,6 +5,7 @@ import com.DBproject.DBproject.controller.dto.RegisterForm;
 import com.DBproject.DBproject.domain.Authority;
 import com.DBproject.DBproject.domain.Employee;
 import com.DBproject.DBproject.exception.AlreadyRegisteredIdException;
+import com.DBproject.DBproject.exception.NoSchoolException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,12 +47,18 @@ public class RegisterController {
         employee.setEmployee_career(form.getEmployee_career()); // 외부 경력
         employee.setAuthority(Authority.BASIC);
         employee.setEmployee_skill(form.getEmployee_skill());
+        if(employee.getEmployee_school().equals("NULL")){
+            throw new NoSchoolException("최종학력을 선택하세요.");
+        }
         employeeService.join(employee);
         return "redirect:/";
 
         }catch (AlreadyRegisteredIdException v){
             model.addAttribute("error", new AlreadyRegisteredIdException(v.getMessage()));
             return "registers/register";
+        }catch (NoSchoolException e){
+            model.addAttribute("error2",new NoSchoolException(e.getMessage()));
+            return  "registers/register";
         }
 
     }

@@ -28,7 +28,7 @@
         <div class = "form-group">
             <label>직책</label><br>
             <select class="form-select" name="positions" id="position" th:field = "*{e_job}" th:value = "*{e_job}">
-                <option value = "NULL">직책을 결정해주세요</option>
+                <option value = "NULL">직책을 선택하세요.</option>
                 <option th:value = "PM">PM</option>
                 <option th:value = "PL">PL</option>
                 <option th:value = "Analyst">Analyst</option>
@@ -41,13 +41,13 @@
 
         <div class = "form-group">
             <label>프로젝트 참여 날짜</label>
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{e_start_d}" placeholder="(yyyy-MM-dd) 프로젝트 참여 날짜를 입력하세요" th:class="${#fields.hasErrors('e_start_d')}? 'form-control fieldError' : 'form-control'">
+            <input class="form-control mr-sm-2" type="date" name="userBirthday" aria-label="Search" th:field="*{e_start_d}" placeholder="(yyyy-MM-dd) 프로젝트 참여 날짜를 입력하세요" th:class="${#fields.hasErrors('e_start_d')}? 'form-control fieldError' : 'form-control'">
             <p th:if="${#fields.hasErrors('e_start_d')}"th:errors="*{e_start_d}" class="mb-3 alert alert-danger">Incorrect date</p>
         </div><br>
 
         <div class = "form-group">
             <label>프로젝트 이탈 날짜</label>
-            <input class="form-control mr-sm-2" type="search" aria-label="Search" th:field="*{e_end_d}" placeholder="(yyyy-MM-dd) 프로젝트 이탈 날짜를 입력하세요" >
+            <input input class="form-control mr-sm-2" type="date" name="userBirthday" aria-label="Search" th:field="*{e_end_d}" placeholder="(yyyy-MM-dd) 프로젝트 이탈 날짜를 입력하세요" >
         </div><br>
 
         <button class="btn btn-primary" style="float: right;" type="submit">프로젝트 투입 등록</button><br>
@@ -66,7 +66,7 @@
                 <stong>프로젝트 종료일자 보다 직원의 프로젝트 참여 일자가 큽니다. </stong>
             </div>
             <div th:if="${error4}" class="mb-3 alert alert-danger">
-                <stong> 직무를 정확히 골라주세요. </stong>
+                <stong> 직무를 선택해 주세요. </stong>
             </div>
         </div>
     </div>

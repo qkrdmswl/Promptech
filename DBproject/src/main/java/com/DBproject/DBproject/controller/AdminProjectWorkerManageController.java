@@ -63,6 +63,7 @@ public class AdminProjectWorkerManageController {
                 throw new NoIdException("해당 프로젝트 또는 해당 프로젝트 인원이 존재하지 않습니다.");
             }
 
+
             // 폼으로 받은 데이터를 works for 테이블로 신규등록하기 위한 메서드(아래에 만든 메서드 참고)
             Works_for works_for = worksForSetting(rpwForm);
 
@@ -88,6 +89,10 @@ public class AdminProjectWorkerManageController {
             return "/works/projectStartRegister";
         }catch (IllegalStateException e) {
             model.addAttribute("error4", new IllegalStateException(e.getMessage()));
+            return "/works/projectStartRegister";
+        }
+        catch (NumberFormatException e){
+            model.addAttribute("error2", new NumberFormatException(e.getMessage()));
             return "/works/projectStartRegister";
         }
     }
@@ -119,6 +124,9 @@ public class AdminProjectWorkerManageController {
         }
         try {
             boolean visible = true;
+            if(findPWorkerForm.getEmployee_id().getClass().getName()!="Integer"){
+                throw  new NoIdException("type error");
+            }
             List<Works_for> prem = projectInputService.findPrEmById(Integer.valueOf(findPWorkerForm.getEmployee_id()),findPWorkerForm.getProject_id());
             // 둘 중 하나라도 works-for 엔티티에 없을때
             if (prem.isEmpty()) {
