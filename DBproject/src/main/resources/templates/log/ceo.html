@@ -31,8 +31,8 @@
     <div style='width:1000px;margin:0 auto;margin-top:50px;font-size: 15px;'>
         <h2 style="margin-bottom: 20px;" th:text="|환영합니다 ${ceo.employee_name} 님|"></h2>
         <ul class="nav nav-tabs" >
-            <li class="active" ><a href="#tabmenu_01"data-toggle="tab">프로젝트 조회</a></li>
-            <li ><a href="#tabmenu_02" data-toggle="tab" >직원 조회</a></li>
+            <li class="active"style="margin-right:20px"><a href="#tabmenu_01"data-toggle="tab">프로젝트 조회</a></li>
+            <li><a href="#tabmenu_02" data-toggle="tab" >직원 조회</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane in active" id="tabmenu_01">
@@ -155,45 +155,30 @@
                         <td th:text="*{em.employee_name}"></td>
                         <td th:text="*{em.phoneNum}"></td>
                         <td th:text="*{em.employee_id}"></td>
+                        <td>
+                            <a href="#" role="button" class="btn btn-outline-success my-2 my-sm-0"  th:href="@{/employee/{id}/info (id=${em.employee_id})}">사원경력/기술스택</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
-            </div>
-            <div class="tab-pane" th:id="tabmenu_02" >
-                <nav class="navbar navbar-light bg-light">
-                    <form class="form-inline" form action="/log/ceo/employeeInfo" method="post">
-                        <input type="text" name="employee_name" placeholder="직원이름 검색" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-                    </form>
-                    <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='/log/ceo'">새로고침</button>
-                </nav>
-                <table class="table table-hover">
-                    <thead>
+
+                <table class="table table-hover" th:if="${visibilityE}">
+                    <thead >
                     <tr>
-                        <th scope="col">사번</th>
-                        <th scope="col">이름</th>
-                        <th scope="col">전화번호</th>
-                        <th scope="col">최종학력</th>
+                        <th scope="col">사원 이름 </th>
+                        <th scope="col">사원 경력 </th>
+                        <th scope="col">사원 기술 스택</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <!--       직원 검색 전 직원리스트                 -->
-                    <tr th:each="employee : ${emlist}">
-                        <td th:text="*{employee.employee_id}"></td>
-                        <td th:text="*{employee.employee_name}"></td>
-                        <td th:text="*{employee.phoneNum}"></td>
-                        <td th:text="*{employee.employee_school}"></td>
-                    </tr>
-                    <tr th:each=" em : ${emInfo}">
-                        <td th:text="*{em.employee_id}"></td>
-                        <td th:text="*{em.employee_name}"></td>
-                        <td th:text="*{em.phoneNum}"></td>
-                        <td th:text="*{em.employee_id}"></td>
+                    <tbody >
+                    <tr th:object="${fEmployee}">
+                        <td th:text="*{employee_name}"></td>
+                        <td th:text="*{employee_career}"></td>
+                        <td th:text="*{employee_skill}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
         <form th:action="@{/logout}" method="post">
             <button class="w-100 btn btn-dark btn-lg"  type="submit">
                 로그아웃

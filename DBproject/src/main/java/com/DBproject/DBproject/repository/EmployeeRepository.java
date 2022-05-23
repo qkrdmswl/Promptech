@@ -19,6 +19,12 @@ public class EmployeeRepository {
         em.persist(employee);
     }
 
+    public List<Employee> findEmployeeListById(int EmployeeId){
+        return em.createQuery("select e from Employee e where e.employee_id=:id",Employee.class)
+                .setParameter("id",EmployeeId)
+                .getResultList();
+    }
+
     public Employee findOne(int id) {
         return em.find(Employee.class, id);
     }

@@ -85,7 +85,7 @@ public class CeoController {
         return "log/ceo";
     }
 
-
+    // 프로젝트에 대한 ceo가 투입인원 보기
     @GetMapping("worksfor/{projectId}/list")
     public String worksforList(@PathVariable("projectId")String id, Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
         List<Works_for> findProject = projectRepository.findProjectById(id);
@@ -105,6 +105,30 @@ public class CeoController {
         model.addAttribute("currentDate",currentDate);
         return  "log/ceo";
     }
+
+    // 사원 경력/ 스킬 보기
+    @GetMapping("/employee/{employeeId}/info")
+    public String getEmployeeInfo(@PathVariable("employeeId")int id, Model model,@SessionAttribute(name = SessionConstants.LoginMember, required = false)  Employee loginMember){
+        Employee findEmployee=employeeRepository.findOne(id);
+        model.addAttribute("fEmployee",findEmployee);
+        boolean visible =true; // 검색 된 후 보여지게 하기 위한 목적
+
+        // html 한 페이지내에 모든 데이터가 들어가야 하기떄문에 모든 데이터 삽입
+        List<Project> projects2=projectRepository.findAll();
+        model.addAttribute("visibilityE",visible);
+        LocalDate currentDate2= LocalDate.now();
+        model.addAttribute("currentDate",currentDate2);
+        model.addAttribute("project",projects2);
+        SumCostDto sum = projectRepository.sumProjectCost().get(0);
+        model.addAttribute("sum",sum);
+        model.addAttribute("ceo",loginMember);
+        // 찾은 employee 를 띄워주기 -> html 상 버튼 달려있는 상태
+        List<Employee> employeeList=employeeRepository.findEmployeeListById(id);
+        model.addAttribute("emInfo",employeeList);
+
+        return "log/ceo";
+    }
+
 
 
 
