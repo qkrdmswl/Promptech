@@ -14,3 +14,6 @@
 ##### V3. DB설계서 2022.04.18 -
 
 <img width="857" alt="스크린샷 2022-04-18 오전 2 27 37" src="https://user-images.githubusercontent.com/66197538/163750576-9e2ca1ff-78f0-43a2-ad82-2cda4c6996eb.png">
+
+##### 요구사항 10개 이상 구현 완료 - 05.25 마무리 
+<img width="856" alt="스크린샷 2022-05-25 오전 12 15 44" src="https://user-images.githubusercontent.com/66197538/170071326-44a3538e-7a0b-4954-b9a9-6b0e7281506a.png">
