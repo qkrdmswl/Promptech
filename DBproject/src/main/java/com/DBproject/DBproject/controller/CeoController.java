@@ -38,6 +38,10 @@ public class CeoController {
         model.addAttribute("project",projects);
         model.addAttribute("sum",sum);
         model.addAttribute("ceo",loginMember);
+        boolean clPType = false;
+        boolean clEType = true;
+        model.addAttribute("clPType",clPType);
+        model.addAttribute("clEType",clEType);
 
 
         return "log/ceo";
@@ -64,6 +68,11 @@ public class CeoController {
         SumCostDto sum = projectRepository.sumProjectCost().get(0);
         model.addAttribute("sum",sum);
         model.addAttribute("ceo",loginMember);
+        boolean clPType= true;
+        boolean clEType= false;
+        model.addAttribute("clEType",clEType);
+        model.addAttribute("clPType",clPType);
+
         return "log/ceo";
     }
 
@@ -81,6 +90,10 @@ public class CeoController {
         List<Employee> employeeList=employeeRepository.findAll();
         model.addAttribute("emlist",employeeList);
         model.addAttribute("currentDate",currentDate);
+        boolean clPType= false;
+        boolean clEType= true;
+        model.addAttribute("clEType",clEType);
+        model.addAttribute("clPType",clPType);
 
         return "log/ceo";
     }
@@ -103,6 +116,10 @@ public class CeoController {
         List<Employee> employeeList=employeeRepository.findAll();
         model.addAttribute("emlist",employeeList);
         model.addAttribute("currentDate",currentDate);
+        boolean clPType= false;
+        boolean clEType= true;
+        model.addAttribute("clEType",clEType);
+        model.addAttribute("clPType",clPType);
         return  "log/ceo";
     }
 
@@ -125,6 +142,11 @@ public class CeoController {
         // 찾은 employee 를 띄워주기 -> html 상 버튼 달려있는 상태
         List<Employee> employeeList=employeeRepository.findEmployeeListById(id);
         model.addAttribute("emInfo",employeeList);
+
+        boolean clPType= true;
+        boolean clEType= false;
+        model.addAttribute("clEType",clEType);
+        model.addAttribute("clPType",clPType);
 
         return "log/ceo";
     }
