@@ -18,10 +18,25 @@
     </style>
 
     <script>
-        $(document).ready(function () {
+        // 1안 js
+        $('#rowTab a:first').tab('show');
+
+        //for bootstrap 3 use 'shown.bs.tab' instead of 'shown' in the next line
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        //save the latest tab; use cookies if you like 'em better:
+            localStorage.setItem('selectedTab', $(e.target).attr('id'));
+        });
+
+        //go to the latest tab, if it exists:
+        var selectedTab = localStorage.getItem('selectedTab');
+        if (selectedTab) {
+            $('#'+selectedTab).tab('show');
+        }
+        // 2안 jquery
+        $(document).ready(function(){
             var link = document.location.href;
             var tab = link.split('/').pop();
-            $('a[href$='+tab+']').trigger("click")
+            $('a[href$='+tab+']').trigger('click');
         });
     </script>
 <body>
@@ -38,9 +53,9 @@
     <!--        </ul>-->
     <div style='width:1000px;margin:0 auto;margin-top:50px;font-size: 15px;'>
         <h2 style="margin-bottom: 20px;" th:text="|환영합니다 ${ceo.employee_name} 님|"></h2>
-        <ul class="nav nav-tabs" >
-            <li class="nav-item"><a class="nav-link" href="#tabmenu_01"data-toggle="tab">프로젝트 조회</a></li>
-            <li class="nav-item"><a class="nav-link" href="#tabmenu_02" data-toggle="tab" >직원 조회</a></li>
+        <ul class="nav nav-tabs" id="rowTab">
+            <li class="active"><a class="nav-link" href="#tabmenu_01"data-toggle="tab">프로젝트 조회</a></li>
+            <li><a class="nav-link" href="#tabmenu_02" data-toggle="tab" >직원 조회</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane in active" id="tabmenu_01">
