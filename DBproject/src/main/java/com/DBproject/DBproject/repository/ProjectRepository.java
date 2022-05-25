@@ -51,7 +51,7 @@ public class ProjectRepository {
         }
 
     public Project findByProjcetId(String id){
-        return em.find(Project.class ,id);
+        return em.find(Project.class,id);
     }
 
 
@@ -62,12 +62,13 @@ public class ProjectRepository {
     }
 
     public List<Project> findAll(){
-        return em.createQuery("select p from Project p order by p.end_date desc ", Project.class)
+        return em.createQuery("select p from Project p left join fetch p.works_fors order by p.end_date desc ", Project.class)
                 .getResultList();
     }
 
     public List<Works_for> findEmployeeById(int employeeId,String projectId) {
-        return em.createQuery("select w from Works_for w where w.employee.employee_id=:e_id and w.project.project_id=:p_id", Works_for.class)
+        return em.createQuery("select w from Works_for w join fetch Project p on p.project_id=w.project.project_id join fetch Employee e on w.employee.employee_id=e.employee_id" +
+                "  where w.employee.employee_id=:e_id and w.project.project_id=:p_id", Works_for.class)
                 .setParameter("e_id", employeeId)
                 .setParameter("p_id",projectId)
                 .getResultList();

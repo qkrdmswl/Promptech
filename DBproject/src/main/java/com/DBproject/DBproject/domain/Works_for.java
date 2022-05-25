@@ -18,13 +18,12 @@ import java.time.LocalDate;
 @IdClass(work_em.class)
 @EqualsAndHashCode
 public class Works_for {
-
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id" )
     private Employee employee;
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)  // Eager -> Fetch + OISV : true - 쿼리 줄임 ,N+1
     @JoinColumn(name ="project_id" )
     private Project project;
 
@@ -36,8 +35,4 @@ public class Works_for {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate e_end_d;
 
-    /*public void setEmployee(Employee employee){
-        this.employee = employee ;
-        employee.getWorks().add(this);
-    }*/
 }

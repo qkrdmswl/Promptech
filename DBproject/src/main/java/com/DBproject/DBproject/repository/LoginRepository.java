@@ -16,7 +16,7 @@ public class LoginRepository {
     private final EntityManager em;
 
     public List<Employee> findById_password(String id,String password){
-        return em.createQuery("select e from Employee e where e.log_id= :id and e.password= :password" ,Employee.class)
+        return em.createQuery("select e from Employee e left join fetch e.works_fors where e.log_id= :id and e.password= :password" ,Employee.class)
                 .setParameter("id",id)
                 .setParameter("password",password)
                 .getResultList();

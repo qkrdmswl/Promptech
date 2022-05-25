@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,7 +26,6 @@ public class Project {
     //@Column(nullable = false)
     private Long project_cost;
 
-   /* @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "projects")
-    List<Works_for> work =new ArrayList<Works_for>();*/
+    @OneToMany(mappedBy = "project")
+    private List<Works_for> works_fors = new ArrayList<>();
 }

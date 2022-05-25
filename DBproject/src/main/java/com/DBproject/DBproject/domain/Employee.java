@@ -38,6 +38,7 @@ public class Employee {
     @Column(length = 80)
     private String employee_career;
 
-
+    @OneToMany(mappedBy = "employee")
+    private List<Works_for> works_fors = new ArrayList<>();
 
 }
